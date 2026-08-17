@@ -105,8 +105,24 @@ nav > a:last-child:hover {
     text-decoration: none; 
 }
 
+.hero-actions a {
+  transition: all 0.3s ease;
+}
+
+.hero-actions a:first-child:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 150, 210, 0.35);
+}
+
+.hero-actions a:last-child:hover {
+  transform: translateY(-4px);
+  background: rgb(6, 88, 181);
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 150, 210, 0.35);;
+}
+
 .hero-card {
-    min-width: 220px;
+    width: 370px;
     padding: 32px;
     border-radius: 24px;
     background: linear-gradient(
@@ -160,4 +176,131 @@ nav > a:last-child:hover {
 
 .hero-card span {
   letter-spacing: 1px;
+}
+
+.accounts {
+  padding: 80px 10%;
+  text-align: center;
+  border-top: 4px solid rgba(0, 110, 170, 0.15);
+}
+
+.accounts h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.accounts > p {
+  font-size: 1.1rem;
+  margin-bottom: 48px;
+}
+
+.account-cards {
+  display: flex;
+  gap: 24px;
+  background: transparent;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.account-card {
+  width: 300px;
+  padding: 28px;
+  background-color: white;
+  border-radius: 18px;
+  text-align: left;
+
+  box-shadow: 0 10px 30px rgba(0, 110, 170, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+
+.account-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(0, 110, 170, 0.18);
+  
+}
+
+.account-card h3 {
+  font-size: 1.4rem;
+  color:rgb(0, 110, 170);
+  margin-bottom: 20px;
+}
+
+.account-card p {
+  color: rgba(128, 128, 128, 0.872);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.account-card a {
+  text-decoration: none;
+  color: rgb(0, 110, 170);
+  font-weight: 700;
+  
+}
+
+
+
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding: 50px 24px;
+    min-height: auto;
+    text-align: center;
+  }
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
+  .hero-card {
+    width: 85%;
+    max-width: 380px;
+    margin-top: 40px;
+    min-height: 250px;
+  }
+  
+  nav {
+  flex-direction: column;
+  gap: 16px;
+  padding: 18px 24px;
+}
+nav ul {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+.hero-actions {
+  justify-content: center;
+}
+
+.account-cards {
+  flex-direction: column;
+  gap: 10px;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-card {
+  width: 300px;
+  padding: 18px;
+  background-color: white;
+  border-radius: 8px;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 110, 170, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 10px;
+  
+}
+
+.account-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0, 110, 170, 0.18);
+  
+}
+.accounts h2 {
+  font-size: 2.3rem;
+}
+
+
 }
