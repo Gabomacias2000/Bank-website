@@ -18,7 +18,7 @@
         <li><a href="#">Services</a></li>
         <li><a href="#">About</a></li>
       </ul>
-      <a href="#">Login</a>
+      <a href="#" class="login-link">Login</a>
     </nav>
   </header>
   <main>
@@ -44,7 +44,7 @@
   <h2>$12,480.25</h2>
 
   <div class="card-bottom">
-    <span>Gabriel M.</span>
+    <span>Alina V.</span>
     <span>•••• 4821</span>
   </div>
 </div>
@@ -77,6 +77,66 @@
   </div>
 </section>
 </main>
+  <div class="login-modal">
+  <div class="login-box">
+
+    <button class="close-modal" type="button">&times;</button>
+
+    <h2>Welcome back</h2>
+
+    <label for="email">Email</label>
+    <input type="email" id="email">
+
+    <label for="password">Password</label>
+
+    <div class="password-wrapper">
+      <input type="password" id="password">
+      <button type="button" class="toggle-password">Show</button>
+    </div>
+
+    <!-- THESE BELONG HERE -->
+    <button type="button">Log in</button>
+
+    <p class="register-text">
+      Don't have an account?
+      <button type="button" class="open-register">
+        Create account
+      </button>
+    </p>
+
+  </div>
+</div>
+
+
+<div class="register-modal">
+  <div class="register-box">
+
+    <button type="button" class="close-register">&times;</button>
+
+    <h2>Create an account</h2>
+
+    <label for="register-name">Full name</label>
+    <input type="text" id="register-name">
+
+    <label for="register-email">Email</label>
+    <input type="email" id="register-email">
+
+    <label for="register-password">Password</label>
+    <input type="password" id="register-password">
+
+    <label for="confirm-password">Confirm password</label>
+    <input type="password" id="confirm-password">
+
+    <button type="button" class="create-account-btn">
+      Create account
+    </button>
+
+  </div>
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>
   <script src="./script.js"></script>
 </body>
 </html>

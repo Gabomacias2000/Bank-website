@@ -239,6 +239,95 @@ nav > a:last-child:hover {
   
 }
 
+.login-modal, .register-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-modal.open, .register-modal.open {
+  display: flex;
+}
+
+.login-box, .register-box {
+  position: relative;
+  width: 400px;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 20px 50px rgba(0, 110, 170, 0.25);
+}
+
+.close-modal, .close-register {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  border: none;
+  background: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.login-box input, .register-box input {
+  padding: 10px 14px;
+  border: 1px solid rgba(0, 110, 170, 0.25);
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+
+}
+
+.login-box input:focus, .register-box input:focus {
+  border-color: rgb(0, 150, 210);
+  box-shadow: 0 0 0 3px rgba(0, 150, 210, 0.15);
+}
+
+.login-box > button:last-child {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    rgb(0, 200, 255),
+    rgb(0, 150, 210),
+    rgb(0, 110, 170)
+  );
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 70px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  border: none;
+  background: none;
+  color: rgb(0, 110, 170);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.register-modal {
+  display: none;
+}
 
 
 
