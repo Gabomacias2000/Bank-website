@@ -6,7 +6,11 @@ const togglePassword = document.querySelector(".toggle-password");
 const registerBtn = document.querySelector(".open-register");
 const registerModal = document.querySelector(".register-modal");
 const closeRegister = document.querySelector(".close-register");
-
+const createAccountBtn = document.querySelector(".create-account-btn");
+const registerName = document.querySelector("#register-name");
+const registerEmail = document.querySelector("#register-email");
+const registerPassword = document.querySelector("#register-password");
+const confirmPassword = document.querySelector("#confirm-password");
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
@@ -52,3 +56,34 @@ togglePassword.addEventListener("click", () => {
 }
 });
 
+function validateRegister() {
+  if (registerName.value.trim() === "") {
+    return "Please enter your name";
+  }
+
+  if (!emailPattern.test(registerEmail.value.trim())) {
+    return "Please enter a valid email";
+  }
+
+  if (registerPassword.value.length < 6) {
+    return "Password must be at least 6 characters";
+  }
+
+  if (registerPassword.value !== confirmPassword.value) {
+    return "Passwords do not match";
+  }
+
+  return null;
+}
+
+
+createAccountBtn.addEventListener("click", () => {
+  const error = validateRegister();
+
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  console.log("Create account");
+});
