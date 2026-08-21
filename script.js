@@ -57,6 +57,8 @@ togglePassword.addEventListener("click", () => {
 });
 
 function validateRegister() {
+ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   if (registerName.value.trim() === "") {
     return "Please enter your name";
   }
@@ -85,5 +87,26 @@ createAccountBtn.addEventListener("click", () => {
     return;
   }
 
-  console.log("Create account");
+  const newUser = {
+  name: registerName.value.trim(),
+  email: registerEmail.value.trim(),
+  password: registerPassword.value
+};
+  
+  const users = JSON.parse(localStorage.getItem("users")) ?? []; 
+
+  users.push(newUser);
+
+  localStorage.setItem("users", JSON.stringify(users));
+  
+  registerName.value = "";
+  registerEmail.value = "";
+  registerPassword.value = "";
+  confirmPassword.value = "";
+  console.log(users);
+  
+
+  
+ 
 });
+
