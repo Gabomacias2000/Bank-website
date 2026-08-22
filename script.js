@@ -100,17 +100,24 @@ function validateRegister(users) {
 
 registerForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  console.log("FORM SUBMITTED");
 
   const users = JSON.parse(localStorage.getItem("users")) ?? []; 
+
+   const errors = document.querySelectorAll(".input-error");
+  errors.forEach((error)=> {
+    error.classList.remove("show");
+  });
 
   const error = validateRegister(users);
 
   if (error) {
     const errorElement = document.getElementById(`${error.field}-error`);
     errorElement.textContent = error.message;
+    errorElement.classList.add("show");
     return;
   }
-
+ 
   const newUser = {
   name: registerName.value.trim(),
   email: registerEmail.value.trim(),
@@ -124,6 +131,10 @@ registerForm.addEventListener("submit", (event) => {
   localStorage.setItem("users", JSON.stringify(users));
   
   registerForm.reset();
+
+  
+  
+
   console.log(users);
   
 });

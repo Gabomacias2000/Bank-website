@@ -333,6 +333,9 @@ nav > a:last-child:hover {
   display: none;
 }
 
+.show {
+  display: block;
+}
 
 
 @media (max-width: 768px) {
