@@ -329,6 +329,10 @@ nav > a:last-child:hover {
   display: none;
 }
 
+.input-error {
+  display: none;
+}
+
 
 
 @media (max-width: 768px) {

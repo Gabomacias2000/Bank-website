@@ -11,6 +11,8 @@ const registerName = document.querySelector("#register-name");
 const registerEmail = document.querySelector("#register-email");
 const registerPassword = document.querySelector("#register-password");
 const confirmPassword = document.querySelector("#confirm-password");
+const registerForm = document.querySelector("#register-form");
+
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
@@ -56,34 +58,56 @@ togglePassword.addEventListener("click", () => {
 }
 });
 
-function validateRegister() {
+function validateRegister(users) {
  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (registerName.value.trim() === "") {
-    return "Please enter your name";
+    return {field: "name",
+            message: "Please enter your name"
+           };
   }
 
   if (!emailPattern.test(registerEmail.value.trim())) {
-    return "Please enter a valid email";
+    return {field: "email",
+            message: "Please enter a valid email"
+           };
   }
 
+  const emailExist = users.some((user) => {
+    return user.email.toLowerCase() === registerEmail.value.trim().toLowerCase();
+  });
+
+   if (emailExist) {
+    return { field: "email",
+             message: "Email already in the system"
+            };
+}
   if (registerPassword.value.length < 6) {
-    return "Password must be at least 6 characters";
+    return {field: "password",
+            message: "Password must be at least 6 characters"
+          };
   }
 
   if (registerPassword.value !== confirmPassword.value) {
-    return "Passwords do not match";
+    return { field: "password-confirmation",
+             message: "Passwords do not match"
+           };
   }
 
   return null;
 }
 
 
-createAccountBtn.addEventListener("click", () => {
-  const error = validateRegister();
+registerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const users = JSON.parse(localStorage.getItem("users")) ?? []; 
+
+  const error = validateRegister(users);
 
   if (error) {
-    console.log(error);
+    const errorElement = document.getElementById(`${error.field}-error`);
+    errorElement.textContent = error.message;
     return;
   }
 
@@ -93,20 +117,15 @@ createAccountBtn.addEventListener("click", () => {
   password: registerPassword.value
 };
   
-  const users = JSON.parse(localStorage.getItem("users")) ?? []; 
-
+  
+  
   users.push(newUser);
 
   localStorage.setItem("users", JSON.stringify(users));
   
-  registerName.value = "";
-  registerEmail.value = "";
-  registerPassword.value = "";
-  confirmPassword.value = "";
+  registerForm.reset();
   console.log(users);
   
-
-  
- 
 });
+
 
