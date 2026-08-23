@@ -1,1 +1,615 @@
-*{margin:0;padding:0;box-sizing:border-box}body{background:#f7fbff;color:#071d3a;font-family:Arial,sans-serif}nav{height:132px;padding:14px 4.5%;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(105deg,#087ca9 0%,#0872a7 42%,#004d8d 100%);box-shadow:0 6px 24px rgba(0,67,117,.18);position:relative;z-index:10}nav a{text-decoration:none;color:white;transition:.25s ease}.brand-link{flex:0 0 310px}.brand-logo{width:310px;height:96px;object-fit:contain;object-position:left center}nav ul{display:flex;gap:52px;list-style:none;align-items:center}nav ul a{font-size:1.08rem;font-weight:600;position:relative;padding:10px 0}.active-nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:#69e4ff;border-radius:4px}nav ul a:hover{color:#bcefff}.login-link{min-width:126px;padding:13px 23px;border:1px solid rgba(255,255,255,.75);border-radius:28px;text-align:center;font-weight:600}.login-link:hover{background:white;color:#075d94}.user-symbol{font-size:1.1rem;margin-right:6px}.hero{min-height:700px;padding:82px 9% 64px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(235,248,255,.98),rgba(255,255,255,.98) 60%,#f8fcff)}.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 14% 42%,rgba(100,200,245,.22),transparent 29%),linear-gradient(135deg,rgba(120,208,242,.11),transparent 38%);pointer-events:none}.mountain-art{position:absolute;left:-35px;bottom:0;width:390px;height:410px;opacity:.23;pointer-events:none}.peak{position:absolute;bottom:0;width:0;height:0;border-left:160px solid transparent;border-right:160px solid transparent;border-bottom:310px solid #57a8d4}.peak-one{left:-65px}.peak-two{left:95px;border-left-width:120px;border-right-width:120px;border-bottom-width:225px;border-bottom-color:#91c8e4}.pine{position:absolute;color:#2c7396;font-size:100px;bottom:5px;transform:scaleX(.5)}.pine-one{left:38px}.pine-two{left:105px;font-size:72px}.pine-three{left:180px;font-size:88px}.hero-content{position:relative;z-index:2;max-width:680px}.hero-content h1{font-size:3.55rem;line-height:1.07;letter-spacing:-2px;color:#061a36}.hero-content>p{margin-top:28px;font-size:1.18rem;line-height:1.6;color:#2d465c}.hero-actions{display:flex;gap:18px;margin-top:34px}.hero-actions a{min-height:58px;padding:0 30px;border-radius:30px;display:flex;align-items:center;gap:13px;justify-content:center;font-size:1.05rem;font-weight:700;transition:.25s ease}.hero-actions a:first-child{color:white;background:linear-gradient(135deg,#0bb8ea,#0064aa);box-shadow:0 10px 25px rgba(0,106,174,.2)}.hero-actions a:last-child{color:#075d9b;border:1.5px solid #0878c5;background:rgba(255,255,255,.72)}.hero-actions a:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,96,160,.2)}.button-icon{font-size:1.25rem}.benefits{display:flex;gap:64px;margin-top:42px}.benefit{min-width:110px;text-align:center;color:#0c2744;font-size:.86rem;line-height:1.15}.benefit-icon{width:54px;height:54px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#e1f3ff;color:#086ca8;font-size:1.6rem}.hero-card{width:440px;min-height:310px;padding:32px 36px;border-radius:30px;background:linear-gradient(145deg,#0caee4,#0065b3 75%);color:white;box-shadow:0 26px 55px rgba(0,91,153,.26);position:relative;overflow:hidden;z-index:2}.hero-card::before{content:"";position:absolute;width:230px;height:230px;right:-70px;top:-95px;border-radius:50%;background:rgba(112,225,255,.22)}.card-top,.card-bottom{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}.card-brand{font-size:1.18rem;font-weight:800;letter-spacing:1px}.card-brand small{display:block;font-size:.68rem;letter-spacing:5px;color:#a9ecff;margin-top:3px}.card-chip{width:55px;height:39px;margin:28px 0 25px;display:grid;grid-template-columns:1fr 1fr;border-radius:9px;overflow:hidden;border:1px solid rgba(255,255,255,.55);background:rgba(208,244,255,.58);position:relative;z-index:2}.card-chip span{border:1px solid rgba(255,255,255,.35)}.hero-card p{font-size:1rem;margin-bottom:8px;opacity:.88;position:relative;z-index:2}.hero-card h2{font-size:2rem;margin-bottom:35px;position:relative;z-index:2}.card-bottom{font-size:1.05rem}.card-mountains{position:absolute;right:-10px;bottom:0;width:310px;height:160px;opacity:.25;background:linear-gradient(135deg,transparent 35%,#003d80 36% 55%,transparent 56%),linear-gradient(45deg,transparent 38%,#00528f 39% 62%,transparent 63%)}.accounts{padding:78px 10%;text-align:center;border-top:1px solid rgba(0,100,160,.1);background:white}.accounts h2{font-size:2.45rem;margin-bottom:14px}.accounts>p{font-size:1.08rem;color:#587083;margin-bottom:45px}.account-cards{display:flex;gap:24px;justify-content:center;align-items:stretch}.account-card{width:300px;padding:28px;background:#fff;border-radius:18px;text-align:left;box-shadow:0 10px 30px rgba(0,110,170,.12);transition:.3s ease}.account-card:hover{transform:translateY(-7px);box-shadow:0 16px 35px rgba(0,110,170,.17)}.account-card h3{font-size:1.35rem;color:#006eaa;margin-bottom:18px}.account-card p{color:#667d8c;line-height:1.6;margin-bottom:18px}.account-card a{text-decoration:none;color:#006eaa;font-weight:700}.login-modal,.register-modal{position:fixed;inset:0;background:rgba(0,18,35,.58);display:none;justify-content:center;align-items:center;z-index:50}.login-modal.open,.register-modal.open{display:flex}.login-box,.register-box{position:relative;width:400px;padding:40px;border-radius:20px;background:white;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 50px rgba(0,70,120,.3)}.login-content{display:flex;flex-direction:column;gap:14px}.account-content{display:none}.close-modal,.close-register{position:absolute;top:15px;right:20px;border:none;background:none;font-size:1.8rem;cursor:pointer}.login-box input,.register-box input{padding:11px 14px;border:1px solid rgba(0,110,170,.25);border-radius:10px;font-size:1rem;outline:none}.login-box input:focus,.register-box input:focus{border-color:#0096d2;box-shadow:0 0 0 3px rgba(0,150,210,.15)}.login-btn,.create-account-btn{margin-top:10px;padding:12px;border:none;border-radius:10px;background:linear-gradient(135deg,#00c8ff,#006eaa);color:white;font-weight:700;cursor:pointer}.password-wrapper{position:relative;display:flex;align-items:center}.password-wrapper input{width:100%;padding-right:70px}.toggle-password{position:absolute;right:12px;border:none;background:none;color:#006eaa;font-weight:600;cursor:pointer}.input-error{display:none}.show{display:block}@media(max-width:900px){nav{height:auto;flex-direction:column;gap:12px;padding:14px 22px}.brand-link{flex:auto}.brand-logo{width:260px;height:82px}nav ul{gap:22px}.hero{flex-direction:column;padding:60px 24px;text-align:center}.hero-content h1{font-size:2.65rem}.hero-actions,.benefits{justify-content:center}.hero-card{width:90%;max-width:440px;margin-top:50px}.mountain-art{opacity:.12}.account-cards{flex-direction:column;align-items:center}}@media(max-width:560px){nav ul{gap:13px;flex-wrap:wrap;justify-content:center}.hero-content h1{font-size:2.25rem}.hero-actions{flex-direction:column;align-items:center}.hero-actions a{width:240px}.benefits{gap:20px;flex-wrap:wrap}.hero-card{padding:28px 25px}.login-box,.register-box{width:90%;padding:34px 25px}}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f7fbff;
+  color: #071d3a;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  height: 132px;
+  padding: 14px 4.5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(105deg, #087ca9 0%, #0872a7 42%, #004d8d 100%);
+  box-shadow: 0 6px 24px rgba(0, 67, 117, 0.18);
+  position: relative;
+  z-index: 10;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  transition: 0.25s ease;
+}
+
+.brand-link {
+  flex: 0 0 310px;
+}
+
+.brand-logo {
+  width: 310px;
+  height: 96px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+nav ul {
+  display: flex;
+  gap: 52px;
+  list-style: none;
+  align-items: center;
+}
+
+nav ul a {
+  font-size: 1.08rem;
+  font-weight: 600;
+  position: relative;
+  padding: 10px 0;
+}
+
+.active-nav::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: #69e4ff;
+  border-radius: 4px;
+}
+
+nav ul a:hover {
+  color: #bcefff;
+}
+
+.login-link {
+  min-width: 126px;
+  padding: 13px 23px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 28px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.login-link:hover {
+  background: white;
+  color: #075d94;
+}
+
+.user-symbol {
+  font-size: 1.1rem;
+  margin-right: 6px;
+}
+
+.hero {
+  min-height: 700px;
+  padding: 82px 9% 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    rgba(235, 248, 255, 0.98),
+    rgba(255, 255, 255, 0.98) 60%,
+    #f8fcff
+  );
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at 14% 42%,
+      rgba(100, 200, 245, 0.22),
+      transparent 29%
+    ),
+    linear-gradient(135deg, rgba(120, 208, 242, 0.11), transparent 38%);
+  pointer-events: none;
+}
+
+.mountain-art {
+  position: absolute;
+  left: -35px;
+  bottom: 0;
+  width: 390px;
+  height: 410px;
+  opacity: 0.23;
+  pointer-events: none;
+}
+
+.peak {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-bottom: 310px solid #57a8d4;
+}
+
+.peak-one {
+  left: -65px;
+}
+
+.peak-two {
+  left: 95px;
+  border-left-width: 120px;
+  border-right-width: 120px;
+  border-bottom-width: 225px;
+  border-bottom-color: #91c8e4;
+}
+
+.pine {
+  position: absolute;
+  color: #2c7396;
+  font-size: 100px;
+  bottom: 5px;
+  transform: scaleX(0.5);
+}
+
+.pine-one {
+  left: 38px;
+}
+
+.pine-two {
+  left: 105px;
+  font-size: 72px;
+}
+
+.pine-three {
+  left: 180px;
+  font-size: 88px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.hero-content h1 {
+  font-size: 3.55rem;
+  line-height: 1.07;
+  letter-spacing: -2px;
+  color: #061a36;
+}
+
+.hero-content > p {
+  margin-top: 28px;
+  font-size: 1.18rem;
+  line-height: 1.6;
+  color: #2d465c;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.hero-actions a {
+  min-height: 58px;
+  padding: 0 30px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  justify-content: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.hero-actions a:first-child {
+  color: white;
+  background: linear-gradient(135deg, #0bb8ea, #0064aa);
+  box-shadow: 0 10px 25px rgba(0, 106, 174, 0.2);
+}
+
+.hero-actions a:last-child {
+  color: #075d9b;
+  border: 1.5px solid #0878c5;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.hero-actions a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(0, 96, 160, 0.2);
+}
+
+.button-icon {
+  font-size: 1.25rem;
+}
+
+.benefits {
+  display: flex;
+  gap: 64px;
+  margin-top: 42px;
+}
+
+.benefit {
+  min-width: 110px;
+  text-align: center;
+  color: #0c2744;
+  font-size: 0.86rem;
+  line-height: 1.15;
+}
+
+.benefit-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e1f3ff;
+  color: #086ca8;
+  font-size: 1.6rem;
+}
+
+.hero-card {
+  width: 440px;
+  min-height: 310px;
+  padding: 32px 36px;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #0caee4, #0065b3 75%);
+  color: white;
+  box-shadow: 0 26px 55px rgba(0, 91, 153, 0.26);
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  right: -70px;
+  top: -95px;
+  border-radius: 50%;
+  background: rgba(112, 225, 255, 0.22);
+}
+
+.card-top,
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.card-brand {
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.card-brand small {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 5px;
+  color: #a9ecff;
+  margin-top: 3px;
+}
+
+.card-chip {
+  width: 55px;
+  height: 39px;
+  margin: 28px 0 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(208, 244, 255, 0.58);
+  position: relative;
+  z-index: 2;
+}
+
+.card-chip span {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.hero-card p {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  opacity: 0.88;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-card h2 {
+  font-size: 2rem;
+  margin-bottom: 35px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-bottom {
+  font-size: 1.05rem;
+}
+
+.card-mountains {
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  width: 310px;
+  height: 160px;
+  opacity: 0.25;
+  background: linear-gradient(
+      135deg,
+      transparent 35%,
+      #003d80 36% 55%,
+      transparent 56%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 38%,
+      #00528f 39% 62%,
+      transparent 63%
+    );
+}
+
+.accounts {
+  padding: 78px 10%;
+  text-align: center;
+  border-top: 1px solid rgba(0, 100, 160, 0.1);
+  background: white;
+}
+
+.accounts h2 {
+  font-size: 2.45rem;
+  margin-bottom: 14px;
+}
+
+.accounts > p {
+  font-size: 1.08rem;
+  color: #587083;
+  margin-bottom: 45px;
+}
+
+.account-cards {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.account-card {
+  width: 300px;
+  padding: 28px;
+  background: #fff;
+  border-radius: 18px;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 110, 170, 0.12);
+  transition: 0.3s ease;
+}
+
+.account-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 16px 35px rgba(0, 110, 170, 0.17);
+}
+
+.account-card h3 {
+  font-size: 1.35rem;
+  color: #006eaa;
+  margin-bottom: 18px;
+}
+
+.account-card p {
+  color: #667d8c;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.account-card a {
+  text-decoration: none;
+  color: #006eaa;
+  font-weight: 700;
+}
+
+.login-modal,
+.register-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 18, 35, 0.58);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.login-modal.open,
+.register-modal.open {
+  display: flex;
+}
+
+.login-box,
+.register-box {
+  position: relative;
+  width: 400px;
+  padding: 40px;
+  border-radius: 20px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 20px 50px rgba(0, 70, 120, 0.3);
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.account-content {
+  display: none;
+}
+
+.close-modal,
+.close-register {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  border: none;
+  background: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.login-box input,
+.register-box input {
+  padding: 11px 14px;
+  border: 1px solid rgba(0, 110, 170, 0.25);
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.login-box input:focus,
+.register-box input:focus {
+  border-color: #0096d2;
+  box-shadow: 0 0 0 3px rgba(0, 150, 210, 0.15);
+}
+
+.login-btn,
+.create-account-btn {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00c8ff, #006eaa);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 70px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  border: none;
+  background: none;
+  color: #006eaa;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.input-error {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  nav {
+    height: auto;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 22px;
+  }
+
+  .brand-link {
+    flex: auto;
+  }
+
+  .brand-logo {
+    width: 260px;
+    height: 82px;
+  }
+
+  nav ul {
+    gap: 22px;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding: 60px 24px;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2.65rem;
+  }
+
+  .hero-actions,
+  .benefits {
+    justify-content: center;
+  }
+
+  .hero-card {
+    width: 90%;
+    max-width: 440px;
+    margin-top: 50px;
+  }
+
+  .mountain-art {
+    opacity: 0.12;
+  }
+
+  .account-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 560px) {
+  nav ul {
+    gap: 13px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions a {
+    width: 240px;
+  }
+
+  .benefits {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .hero-card {
+    padding: 28px 25px;
+  }
+
+  .login-box,
+  .register-box {
+    width: 90%;
+    padding: 34px 25px;
+  }
+}
