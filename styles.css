@@ -288,7 +288,7 @@ nav > a:last-child:hover {
   box-shadow: 0 0 0 3px rgba(0, 150, 210, 0.15);
 }
 
-.login-box > button:last-child {
+.login-btn {
   margin-top: 10px;
   padding: 12px;
   border: none;

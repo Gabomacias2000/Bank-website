@@ -16,7 +16,8 @@ const email = document.getElementById("email");
 const loginForm = document.querySelector(".login-box");
 const loginEmailError = document.getElementById("login-email-error");
 const loginPasswordError = document.getElementById("login-password-error");
-
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const logoutBtn = document.querySelector(".logout-btn");
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
@@ -39,19 +40,36 @@ registerBtn.addEventListener("click", () => {
   registerModal.classList.add("open");
 })
 
+function updateNavbar() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (currentUser) {
+    loginLink.textContent = `Hi, ${currentUser.name}`;
+    logoutBtn.style.display = "block";
+
+  } else {
+    loginLink.textContent = "Login";
+    logoutBtn.style.display = "none";
+  }
+}
+
 loginLink.addEventListener("click", (event) => {
-  event.preventDefault(); 
+  event.preventDefault();
+
+  loginModal.classList.add("open");
+ 
 });
 
 loginModal.addEventListener("click", (event) => {
   if (event.target === loginModal) {
     loginModal.classList.remove("open");
-    
+    clearLoginForm();
   }
 });
 
 closeModal.addEventListener("click", () => {
   loginModal.classList.remove("open");
+  clearLoginForm();
 });
 
 togglePassword.addEventListener("click", () => {
@@ -63,6 +81,13 @@ togglePassword.addEventListener("click", () => {
   togglePassword.textContent = "Show";
 }
 });
+
+function clearLoginForm() {
+  email.value = "";
+  passwordInput.value = "";
+  loginEmailError.classList.remove("show");
+  loginPasswordError.classList.remove("show");
+}
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -84,9 +109,19 @@ loginForm.addEventListener("submit", (event) => {
     return;
   }
    console.log("Login successful!");
+   localStorage.setItem("currentUser", JSON.stringify(foundUser));
+   clearLoginForm();
+   loginModal.classList.remove("open");
+   updateNavbar();
+   console.log(currentUser);
+   
 });
 
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("currentUser");
 
+  updateNavbar();
+});
 
 
 function validateRegister(users) {
