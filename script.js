@@ -14,6 +14,8 @@ const confirmPassword = document.querySelector("#confirm-password");
 const registerForm = document.querySelector("#register-form");
 const email = document.getElementById("email");
 const loginForm = document.querySelector(".login-box");
+const loginEmailError = document.getElementById("login-email-error");
+const loginPasswordError = document.getElementById("login-password-error");
 
 
 registerModal.addEventListener("click", (event) => {
@@ -64,8 +66,27 @@ togglePassword.addEventListener("click", () => {
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  
-})
+  const users = JSON.parse(localStorage.getItem("users")) ?? []; 
+
+  const foundUser = users.find((user) => {
+  return user.email.toLowerCase() === email.value.trim().toLowerCase();
+  });
+
+  if (!foundUser) {
+   loginEmailError.textContent = "Email not found";
+   loginEmailError.classList.add("show");
+   return;
+  }
+
+  if (foundUser.password !== passwordInput.value) {
+    loginPasswordError.textContent = "Incorrect Password";
+    loginPasswordError.classList.add("show");
+    return;
+  }
+   console.log("Login successful!");
+});
+
+
 
 
 function validateRegister(users) {
