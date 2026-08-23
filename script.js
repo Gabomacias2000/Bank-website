@@ -12,11 +12,14 @@ const registerEmail = document.querySelector("#register-email");
 const registerPassword = document.querySelector("#register-password");
 const confirmPassword = document.querySelector("#confirm-password");
 const registerForm = document.querySelector("#register-form");
+const email = document.getElementById("email");
+const loginForm = document.querySelector(".login-box");
 
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
     registerModal.classList.remove("open");
+    hideRegisterErrors();
   }
   
 })
@@ -24,6 +27,7 @@ registerModal.addEventListener("click", (event) => {
 
 closeRegister.addEventListener("click", () => {
   registerModal.classList.remove("open");
+  cleanRegisterForm();
   loginModal.classList.add("open");
 })
 
@@ -34,13 +38,13 @@ registerBtn.addEventListener("click", () => {
 })
 
 loginLink.addEventListener("click", (event) => {
-  event.preventDefault();
-  loginModal.classList.add("open");
+  event.preventDefault(); 
 });
 
 loginModal.addEventListener("click", (event) => {
   if (event.target === loginModal) {
     loginModal.classList.remove("open");
+    
   }
 });
 
@@ -57,6 +61,12 @@ togglePassword.addEventListener("click", () => {
   togglePassword.textContent = "Show";
 }
 });
+
+loginForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  
+})
+
 
 function validateRegister(users) {
  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -97,17 +107,30 @@ function validateRegister(users) {
   return null;
 }
 
+function cleanRegisterForm() {
+    registerForm.reset();
 
-registerForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  console.log("FORM SUBMITTED");
-
-  const users = JSON.parse(localStorage.getItem("users")) ?? []; 
-
-   const errors = document.querySelectorAll(".input-error");
+    const errors = document.querySelectorAll(".input-error");
   errors.forEach((error)=> {
     error.classList.remove("show");
   });
+}
+
+function hideRegisterErrors() {
+  const errors = document.querySelectorAll(".input-error");
+  errors.forEach((error)=> {
+    error.classList.remove("show");
+  });
+}
+ 
+
+registerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  
+
+  const users = JSON.parse(localStorage.getItem("users")) ?? []; 
+
+  hideRegisterErrors();
 
   const error = validateRegister(users);
 
@@ -130,7 +153,7 @@ registerForm.addEventListener("submit", (event) => {
 
   localStorage.setItem("users", JSON.stringify(users));
   
-  registerForm.reset();
+  cleanRegisterForm();
 
   
   
