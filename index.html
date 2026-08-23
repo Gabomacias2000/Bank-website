@@ -82,8 +82,8 @@
 
     <button class="close-modal" type="button">&times;</button>
 
-    <h2>Welcome back</h2>
-
+    <div class="login-content">
+      
     <label for="email">Email</label>
     <input type="email" id="email">
     <p class="input-error" id="login-email-error"></p>
@@ -99,14 +99,21 @@
 
     <!-- THESE BELONG HERE -->
     <button type="submit" class="login-btn">Log in</button>
-    <button class="logout-btn">Logout</button>
-
     <p class="register-text">
       Don't have an account?
       <button type="button" class="open-register">
         Create account
       </button>
     </p>
+    </div>
+    <div class="account-content">
+      <h2 class="account-greeting"></h2>
+      <p>Thank you for choosing Jasper Bank.</p>
+
+      <button type="button" class="logout-btn">
+        Logout
+      </button>
+    </div>
 
   </form>
 </div>

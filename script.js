@@ -6,7 +6,6 @@ const togglePassword = document.querySelector(".toggle-password");
 const registerBtn = document.querySelector(".open-register");
 const registerModal = document.querySelector(".register-modal");
 const closeRegister = document.querySelector(".close-register");
-const createAccountBtn = document.querySelector(".create-account-btn");
 const registerName = document.querySelector("#register-name");
 const registerEmail = document.querySelector("#register-email");
 const registerPassword = document.querySelector("#register-password");
@@ -16,8 +15,10 @@ const email = document.getElementById("email");
 const loginForm = document.querySelector(".login-box");
 const loginEmailError = document.getElementById("login-email-error");
 const loginPasswordError = document.getElementById("login-password-error");
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const logoutBtn = document.querySelector(".logout-btn");
+const loginContent = document.querySelector(".login-content");
+const accountContent = document.querySelector(".account-content");
+const accountGreeting = document.querySelector(".account-greeting");
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
@@ -53,9 +54,23 @@ function updateNavbar() {
   }
 }
 
+function updateLoginModal() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (currentUser) {
+    loginContent.style.display = "none";
+    accountContent.style.display = "block";
+
+    accountGreeting.textContent = `Hi, ${currentUser.name}`;
+  } else {
+    loginContent.style.display = "block";
+    accountContent.style.display = "none";
+  }
+}
+
 loginLink.addEventListener("click", (event) => {
   event.preventDefault();
-
+  updateLoginModal();
   loginModal.classList.add("open");
  
 });
@@ -113,7 +128,7 @@ loginForm.addEventListener("submit", (event) => {
    clearLoginForm();
    loginModal.classList.remove("open");
    updateNavbar();
-   console.log(currentUser);
+  
    
 });
 
@@ -121,6 +136,7 @@ logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("currentUser");
 
   updateNavbar();
+  updateLoginModal();
 });
 
 
@@ -173,7 +189,7 @@ function cleanRegisterForm() {
 }
 
 function hideRegisterErrors() {
-  const errors = document.querySelectorAll(".input-error");
+  const errors = document.querySelectorAll(".register-box .input-error");
   errors.forEach((error)=> {
     error.classList.remove("show");
   });

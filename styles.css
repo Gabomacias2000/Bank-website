@@ -239,6 +239,12 @@ nav > a:last-child:hover {
   
 }
 
+.account-content {
+  display: none;
+}
+
+
+
 .login-modal, .register-modal {
   position: fixed;
   inset: 0;
@@ -262,6 +268,12 @@ nav > a:last-child:hover {
   flex-direction: column;
   gap: 14px;
   box-shadow: 0 20px 50px rgba(0, 110, 170, 0.25);
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .close-modal, .close-register {
