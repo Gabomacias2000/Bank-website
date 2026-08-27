@@ -38,9 +38,9 @@
       <div class="hero-card">
         <div class="card-top"><span class="card-brand">JASPER <small>BANK</small></span><span>•••</span></div>
         <div class="card-chip"><span></span><span></span><span></span><span></span></div>
-        <p>Available balance</p><h2>$12,480.25</h2>
+        <p>Available balance</p><h2 id="card-balance">$0.00</h2>
         <div class="card-mountains" aria-hidden="true"></div>
-        <div class="card-bottom"><span>Alina V.</span><span>•••• 4821</span></div>
+        <div class="card-bottom"><span class="card-name">Jasper Client</span><span>•••• 4821</span></div>
       </div>
     </section>
 
@@ -56,7 +56,7 @@
 
   <div class="login-modal"><form class="login-box"><button class="close-modal" type="button">&times;</button><div class="login-content"><h2>Welcome back</h2><label for="email">Email</label><input type="email" id="email"><p class="input-error" id="login-email-error"></p><label for="password">Password</label><div class="password-wrapper"><input type="password" id="password"><button type="button" class="toggle-password">Show</button></div><p class="input-error" id="login-password-error"></p><button type="submit" class="login-btn">Log in</button><p class="register-text">Don't have an account? <button type="button" class="open-register">Create account</button></p></div><div class="account-content"><div class="account-icon">✓</div><h2 class="account-greeting"></h2><p class="account-message">Thank you for choosing Jasper Bank. We're glad to have you with us.</p><button type="button" class="logout-btn">Logout</button></div></form></div>
 
-  <div class="register-modal"><form class="register-box" id="register-form"><button type="button" class="close-register">&times;</button><h2>Create an account</h2><label for="register-name">Full name</label><input type="text" id="register-name"><p class="input-error" id="name-error"></p><label for="register-email">Email</label><input type="email" id="register-email"><p class="input-error" id="email-error"></p><label for="register-password">Password</label><input type="password" id="register-password"><p class="input-error" id="password-error"></p><label for="confirm-password">Confirm password</label><input type="password" id="confirm-password"><p class="input-error" id="password-confirmation-error"></p><button type="submit" class="create-account-btn">Create account</button></form></div>
+  <div class="register-modal"><form class="register-box" id="register-form"><button type="button" class="close-register">&times;</button><h2>Create an account</h2><label for="register-name">Full name</label><input type="text" id="register-name"><p class="input-error" id="name-error"></p><label for="register-email">Email</label><input type="email" id="register-email"><p class="input-error" id="email-error"></p><label for="register-password">Password</label><input type="password" id="register-password"><p class="input-error" id="password-error"></p><label for="confirm-password">Confirm password</label><input type="password" id="confirm-password"><p class="input-error" id="password-confirmation-error"></p><button type="submit" class="create-account-btn">Create account</button><p class="register-success" id="register-success"></p></form></div>
   <script src="./script.js"></script>
 </body>
 </html>

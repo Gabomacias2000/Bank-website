@@ -19,6 +19,9 @@ const logoutBtn = document.querySelector(".logout-btn");
 const loginContent = document.querySelector(".login-content");
 const accountContent = document.querySelector(".account-content");
 const accountGreeting = document.querySelector(".account-greeting");
+const cardBalance = document.getElementById("card-balance");
+const cardName = document.querySelector(".card-name");
+const registerSuccess = document.getElementById("register-success");
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
@@ -63,8 +66,21 @@ function updateLoginModal() {
 
     accountGreeting.textContent = `Hi, ${currentUser.name}`;
   } else {
-    loginContent.style.display = "block";
+    loginContent.style.display = "flex";
     accountContent.style.display = "none";
+  }
+}
+
+function updateBankCard() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (currentUser) {
+    cardBalance.textContent = `$${currentUser.balance.toFixed(2)}`;
+    cardName.textContent = currentUser.name;
+
+  } else {
+    cardBalance.textContent = "$0.00";
+    cardName.textContent = "Jasper Client"
   }
 }
 
@@ -72,7 +88,7 @@ loginLink.addEventListener("click", (event) => {
   event.preventDefault();
   updateLoginModal();
   loginModal.classList.add("open");
- 
+  
 });
 
 loginModal.addEventListener("click", (event) => {
@@ -128,6 +144,7 @@ loginForm.addEventListener("submit", (event) => {
    clearLoginForm();
    loginModal.classList.remove("open");
    updateNavbar();
+   updateBankCard();
   
    
 });
@@ -137,6 +154,7 @@ logoutBtn.addEventListener("click", () => {
 
   updateNavbar();
   updateLoginModal();
+  updateBankCard();
 });
 
 
@@ -195,6 +213,13 @@ function hideRegisterErrors() {
   });
 }
  
+function generateAccountNumber() {
+  return Math.floor(
+    1000000000 + Math.random() * 9000000000
+  );
+}
+
+
 
 registerForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -216,7 +241,11 @@ registerForm.addEventListener("submit", (event) => {
   const newUser = {
   name: registerName.value.trim(),
   email: registerEmail.value.trim(),
-  password: registerPassword.value
+  password: registerPassword.value,
+  accountNumber: generateAccountNumber(),
+  balance: 1000,
+  transactions: []
+
 };
   
   
@@ -224,14 +253,27 @@ registerForm.addEventListener("submit", (event) => {
   users.push(newUser);
 
   localStorage.setItem("users", JSON.stringify(users));
-  
+  registerSuccess.textContent = "Your account has been created successfully!";
+  registerSuccess.classList.add("show");
+
+  setTimeout(() => {
+  registerModal.classList.remove("open");
+  loginModal.classList.add("open");
+
   cleanRegisterForm();
+  registerSuccess.classList.remove("show");
+}, 1500);
+  
+  
 
   
   
 
   console.log(users);
   
+  
 });
 
 
+updateNavbar();
+updateBankCard();

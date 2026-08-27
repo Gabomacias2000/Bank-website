@@ -431,6 +431,17 @@ nav ul a:hover {
   z-index: 50;
 }
 
+.register-success {
+  display: none;
+  color: green;
+  font-weight: 600;
+  text-align: center;
+}
+
+.register-success.show {
+  display: block;
+}
+
 .login-modal.open,
 .register-modal.open {
   display: flex;
