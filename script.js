@@ -120,6 +120,16 @@ function clearLoginForm() {
   loginPasswordError.classList.remove("show");
 }
 
+function updatePage() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (currentUser) {
+    document.body.classList.add("logged-in");
+  } else {
+    document.body.classList.remove("logged-in");
+  }
+}
+
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const users = JSON.parse(localStorage.getItem("users")) ?? []; 
@@ -145,6 +155,7 @@ loginForm.addEventListener("submit", (event) => {
    loginModal.classList.remove("open");
    updateNavbar();
    updateBankCard();
+   updatePage();
   
    
 });
@@ -155,6 +166,7 @@ logoutBtn.addEventListener("click", () => {
   updateNavbar();
   updateLoginModal();
   updateBankCard();
+  updatePage();
 });
 
 
@@ -277,3 +289,4 @@ registerForm.addEventListener("submit", (event) => {
 
 updateNavbar();
 updateBankCard();
+updatePage();
