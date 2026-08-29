@@ -26,44 +26,37 @@ const depositSection = document.querySelector(".deposit-section");
 const backToActions = document.querySelector(".back-to-actions");
 const depositAction = document.querySelector(".deposit-action");
 const bankActions = document.querySelector(".bank-actions");
-
-
-
-
-
-
-
+const loginText = document.querySelector(".login-text");
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
     registerModal.classList.remove("open");
     hideRegisterErrors();
   }
-  
-})
+});
 
 
 closeRegister.addEventListener("click", () => {
   registerModal.classList.remove("open");
   cleanRegisterForm();
   loginModal.classList.add("open");
-})
+});
 
 
 registerBtn.addEventListener("click", () => {
   loginModal.classList.remove("open")
   registerModal.classList.add("open");
-})
+});
 
 function updateNavbar() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (currentUser) {
-    loginLink.textContent = `Hi, ${currentUser.name}`;
+    loginText.textContent = `Hi, ${currentUser.name}`;
     logoutBtn.style.display = "block";
 
   } else {
-    loginLink.textContent = "Login";
+    loginText.textContent = "Login";
     logoutBtn.style.display = "none";
   }
 }
@@ -174,12 +167,14 @@ loginForm.addEventListener("submit", (event) => {
 
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("currentUser");
+ 
+  depositSection.style.display = "none";
+  bankActions.style.display = "";
 
   updateNavbar();
   updateLoginModal();
   updateBankCard();
   updatePage();
-  bankActions.style.display = "none";
   
 });
 
@@ -226,7 +221,7 @@ function validateRegister(users) {
 function cleanRegisterForm() {
     registerForm.reset();
 
-    const errors = document.querySelectorAll(".input-error");
+    const errors = document.querySelectorAll(".register-box .input-error");
   errors.forEach((error)=> {
     error.classList.remove("show");
   });
@@ -271,7 +266,6 @@ registerForm.addEventListener("submit", (event) => {
   accountNumber: generateAccountNumber(),
   balance: 1000,
   transactions: []
-
 };
   
   
@@ -298,6 +292,15 @@ registerForm.addEventListener("submit", (event) => {
   console.log(users);
   
   
+});
+
+function showBankActions() {
+  depositSection.style.display = "none";
+  bankActions.style.display = "block";
+}
+
+backToActions.addEventListener("click", () => {
+  showBankActions();
 });
 
 
