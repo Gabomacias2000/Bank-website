@@ -27,33 +27,23 @@ const backToActions = document.querySelector(".back-to-actions");
 const depositAction = document.querySelector(".deposit-action");
 const bankActions = document.querySelector(".bank-actions");
 
-
-
-
-
-
-
-
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
     registerModal.classList.remove("open");
     hideRegisterErrors();
   }
-  
-})
-
+});
 
 closeRegister.addEventListener("click", () => {
   registerModal.classList.remove("open");
   cleanRegisterForm();
   loginModal.classList.add("open");
-})
-
+});
 
 registerBtn.addEventListener("click", () => {
-  loginModal.classList.remove("open")
+  loginModal.classList.remove("open");
   registerModal.classList.add("open");
-})
+});
 
 function updateNavbar() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -61,7 +51,6 @@ function updateNavbar() {
   if (currentUser) {
     loginLink.textContent = `Hi, ${currentUser.name}`;
     logoutBtn.style.display = "block";
-
   } else {
     loginLink.textContent = "Login";
     logoutBtn.style.display = "none";
@@ -88,10 +77,9 @@ function updateBankCard() {
   if (currentUser) {
     cardBalance.textContent = `$${currentUser.balance.toFixed(2)}`;
     cardName.textContent = currentUser.name;
-
   } else {
     cardBalance.textContent = "$0.00";
-    cardName.textContent = "Jasper Client"
+    cardName.textContent = "Jasper Client";
   }
 }
 
@@ -99,7 +87,6 @@ loginLink.addEventListener("click", (event) => {
   event.preventDefault();
   updateLoginModal();
   loginModal.classList.add("open");
-  
 });
 
 loginModal.addEventListener("click", (event) => {
@@ -118,10 +105,10 @@ togglePassword.addEventListener("click", () => {
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
     togglePassword.textContent = "Hide";
-} else {
-  passwordInput.type = "password";
-  togglePassword.textContent = "Show";
-}
+  } else {
+    passwordInput.type = "password";
+    togglePassword.textContent = "Show";
+  }
 });
 
 function clearLoginForm() {
@@ -138,22 +125,21 @@ function updatePage() {
     document.body.classList.add("logged-in");
   } else {
     document.body.classList.remove("logged-in");
-    
   }
 }
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const users = JSON.parse(localStorage.getItem("users")) ?? []; 
+  const users = JSON.parse(localStorage.getItem("users")) ?? [];
 
   const foundUser = users.find((user) => {
-  return user.email.toLowerCase() === email.value.trim().toLowerCase();
+    return user.email.toLowerCase() === email.value.trim().toLowerCase();
   });
 
   if (!foundUser) {
-   loginEmailError.textContent = "Email not found";
-   loginEmailError.classList.add("show");
-   return;
+    loginEmailError.textContent = "Email not found";
+    loginEmailError.classList.add("show");
+    return;
   }
 
   if (foundUser.password !== passwordInput.value) {
@@ -161,15 +147,14 @@ loginForm.addEventListener("submit", (event) => {
     loginPasswordError.classList.add("show");
     return;
   }
-   console.log("Login successful!");
-   localStorage.setItem("currentUser", JSON.stringify(foundUser));
-   clearLoginForm();
-   loginModal.classList.remove("open");
-   updateNavbar();
-   updateBankCard();
-   updatePage();
-  
-   
+
+  console.log("Login successful!");
+  localStorage.setItem("currentUser", JSON.stringify(foundUser));
+  clearLoginForm();
+  loginModal.classList.remove("open");
+  updateNavbar();
+  updateBankCard();
+  updatePage();
 });
 
 logoutBtn.addEventListener("click", () => {
@@ -180,78 +165,79 @@ logoutBtn.addEventListener("click", () => {
   updateBankCard();
   updatePage();
   bankActions.style.display = "none";
-  
 });
 
-
 function validateRegister(users) {
- const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (registerName.value.trim() === "") {
-    return {field: "name",
-            message: "Please enter your name"
-           };
+    return {
+      field: "name",
+      message: "Please enter your name"
+    };
   }
 
   if (!emailPattern.test(registerEmail.value.trim())) {
-    return {field: "email",
-            message: "Please enter a valid email"
-           };
+    return {
+      field: "email",
+      message: "Please enter a valid email"
+    };
   }
 
   const emailExist = users.some((user) => {
     return user.email.toLowerCase() === registerEmail.value.trim().toLowerCase();
   });
 
-   if (emailExist) {
-    return { field: "email",
-             message: "Email already in the system"
-            };
-}
+  if (emailExist) {
+    return {
+      field: "email",
+      message: "Email already in the system"
+    };
+  }
+
   if (registerPassword.value.length < 6) {
-    return {field: "password",
-            message: "Password must be at least 6 characters"
-          };
+    return {
+      field: "password",
+      message: "Password must be at least 6 characters"
+    };
   }
 
   if (registerPassword.value !== confirmPassword.value) {
-    return { field: "password-confirmation",
-             message: "Passwords do not match"
-           };
+    return {
+      field: "password-confirmation",
+      message: "Passwords do not match"
+    };
   }
 
   return null;
 }
 
 function cleanRegisterForm() {
-    registerForm.reset();
+  registerForm.reset();
 
-    const errors = document.querySelectorAll(".input-error");
-  errors.forEach((error)=> {
+  const errors = document.querySelectorAll(".input-error");
+  errors.forEach((error) => {
     error.classList.remove("show");
   });
 }
 
 function hideRegisterErrors() {
   const errors = document.querySelectorAll(".register-box .input-error");
-  errors.forEach((error)=> {
+  errors.forEach((error) => {
     error.classList.remove("show");
   });
 }
- 
+
 function generateAccountNumber() {
   return Math.floor(
     1000000000 + Math.random() * 9000000000
   );
 }
 
-
-
 registerForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  
 
-  const users = JSON.parse(localStorage.getItem("users")) ?? []; 
+  const users = JSON.parse(localStorage.getItem("users")) ?? [];
 
   hideRegisterErrors();
 
@@ -263,19 +249,16 @@ registerForm.addEventListener("submit", (event) => {
     errorElement.classList.add("show");
     return;
   }
- 
-  const newUser = {
-  name: registerName.value.trim(),
-  email: registerEmail.value.trim(),
-  password: registerPassword.value,
-  accountNumber: generateAccountNumber(),
-  balance: 1000,
-  transactions: []
 
-};
-  
-  
-  
+  const newUser = {
+    name: registerName.value.trim(),
+    email: registerEmail.value.trim(),
+    password: registerPassword.value,
+    accountNumber: generateAccountNumber(),
+    balance: 1000,
+    transactions: []
+  };
+
   users.push(newUser);
 
   localStorage.setItem("users", JSON.stringify(users));
@@ -283,37 +266,26 @@ registerForm.addEventListener("submit", (event) => {
   registerSuccess.classList.add("show");
 
   setTimeout(() => {
-  registerModal.classList.remove("open");
-  loginModal.classList.add("open");
+    registerModal.classList.remove("open");
+    loginModal.classList.add("open");
 
-  cleanRegisterForm();
-  registerSuccess.classList.remove("show");
-}, 1500);
-  
-  
-
-  
-  
+    cleanRegisterForm();
+    registerSuccess.classList.remove("show");
+  }, 1500);
 
   console.log(users);
-  
-  
 });
-
 
 depositAction.addEventListener("click", () => {
   bankActions.style.display = "none";
   depositSection.style.display = "block";
-})
+});
 
 backToActions.addEventListener("click", () => {
   depositSection.style.display = "none";
   bankActions.style.display = "block";
-})
-
-
+});
 
 updateNavbar();
 updateBankCard();
 updatePage();
-
