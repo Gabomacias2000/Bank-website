@@ -27,6 +27,7 @@ const backToActions = document.querySelector(".back-to-actions");
 const depositAction = document.querySelector(".deposit-action");
 const bankActions = document.querySelector(".bank-actions");
 const loginText = document.querySelector(".login-text");
+const depositAccount = document.getElementById("deposit-account");
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
@@ -260,8 +261,23 @@ registerForm.addEventListener("submit", (event) => {
   email: registerEmail.value.trim(),
   password: registerPassword.value,
   accountNumber: generateAccountNumber(),
-  balance: 1000,
-  transactions: []
+
+  accounts : [
+    {
+      type: "Cheking",
+      number: generateAccountNumber(),
+      balance : 1000
+    },
+
+    {
+      type: "Savings",
+      number: generateAccountNumber(),
+      balance : 0
+    }
+
+  ],
+
+  transactions : []
 };
   
   
@@ -294,8 +310,22 @@ backToActions.addEventListener("click", () => {
 
 
 depositAction.addEventListener("click", () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")
+);
+
   bankActions.style.display = "none";
   depositSection.style.display = "block";
+
+  currentUser.accounts.forEach((account) => {
+  
+    const option = document.createElement("option");
+      option.value = account.accountNumber;
+      option.textContent = `${account.type} •••• ${account.accountNumber
+      .toString()}`;
+
+     depositAccount.appendChild(option);
+    
+  });
 });
 
 backToActions.addEventListener("click", () => {

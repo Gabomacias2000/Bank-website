@@ -632,7 +632,112 @@ body.logged-in .hero {
 
 .deposit-section {
   display: none;
+  width: min(700px, 90%);
+  margin: 0 auto;
+  padding: 40px;
+
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+
+  box-shadow: 0 20px 50px rgba(0, 47, 86, 0.12);
+
+  position: relative;
+  z-index: 2;
 }
+
+.deposit-section h2 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+
+  font-size: 36px;
+  color: #073b66;
+}
+
+.deposit-section > p {
+  margin-bottom: 30px;
+
+  font-size: 17px;
+  color: #667f91;
+}
+
+.back-to-actions {
+  border: none;
+  background: transparent;
+
+  color: #0784c8;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.back-to-actions:hover {
+  text-decoration: underline;
+}
+
+.deposit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.deposit-form label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #073b66;
+}
+
+.deposit-form input, {
+  width: 100%;
+  padding: 16px 18px;
+
+  border: 1px solid #c8dce8;
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  font-size: 20px;
+  color: #073b66;
+
+  outline: none;
+}
+
+.deposit-form input:focus {
+  border-color: #0784c8;
+
+  box-shadow: 0 0 0 3px rgba(7, 132, 200, 0.12);
+}
+
+.deposit-submit {
+  margin-top: 10px;
+
+  padding: 16px 24px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: #0784c8;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.deposit-submit:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 22px rgba(7, 132, 200, 0.25);
+}
+
+
 
 
 
@@ -793,6 +898,15 @@ body.logged-in .hero {
   .bank-actions > h2 {
     font-size: 30px;
   }
+
+  .deposit-section {
+  width: 92%;
+  padding: 26px 22px;
+}
+
+.deposit-section h2 {
+  font-size: 30px;
+}
 }
 
 @media (max-width: 450px) {
