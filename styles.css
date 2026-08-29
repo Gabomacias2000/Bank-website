@@ -418,13 +418,12 @@ nav ul a:hover {
   justify-content: center;
   width: 52px;
   height: 52px;
-  margin-bottom: 24px;
   border-radius: 14px;
   background: #e4f5ff;
   color: #0784c8;
   font-size: 26px;
   font-weight: bold;
-   margin: 0 auto 24px;
+  margin: 0 auto 24px;
 }
 
 .action-card h3 {
@@ -631,6 +630,60 @@ body.logged-in .hero {
   display: block;
 }
 
+.deposit-section {
+  display: none;
+}
+
+
+
+
+
+@media (max-width: 1200px) {
+  nav {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .brand-link {
+    flex: 0 0 250px;
+  }
+
+  .brand-logo {
+    width: 250px;
+  }
+
+  nav ul {
+    gap: 28px;
+  }
+}
+
+@media (max-width: 1000px) {
+  nav {
+    padding: 10px 3%;
+  }
+
+  .brand-link {
+    flex: 0 0 220px;
+  }
+
+  .brand-logo {
+    width: 220px;
+  }
+
+  nav ul {
+    gap: 18px;
+  }
+
+  nav ul a {
+    font-size: 15px;
+  }
+
+  .login-link {
+    padding: 12px 22px;
+  }
+
+}
+
 @media (max-width: 900px) {
   nav {
     height: auto;
@@ -640,12 +693,12 @@ body.logged-in .hero {
   }
 
   .brand-link {
-    flex: auto;
+    flex: none;
   }
 
   .brand-logo {
-    width: 260px;
-    height: 82px;
+    width: 220px;
+    height: auto;
   }
 
   nav ul {
@@ -690,6 +743,9 @@ body.logged-in .hero {
   }
 
 }
+
+
+
 
 @media (max-width: 560px) {
   nav ul {
@@ -739,55 +795,6 @@ body.logged-in .hero {
   }
 }
 
-@media (max-width: 1000px) {
-  nav {
-    padding: 10px 3%;
-  }
-
-  .brand-link {
-    flex: 0 0 220px;
-  }
-
-  .brand-logo {
-    width: 220px;
-  }
-
-  nav ul {
-    gap: 18px;
-  }
-
-  nav ul a {
-    font-size: 15px;
-  }
-
-  .login-link {
-    padding: 12px 22px;
-  }
-
-  .hero-card {
-    width: 440px;
-  }
-}
-
-@media (max-width: 1200px) {
-  nav {
-    padding-left: 3%;
-    padding-right: 3%;
-  }
-
-  .brand-link {
-    flex: 0 0 250px;
-  }
-
-  .brand-logo {
-    width: 250px;
-  }
-
-  nav ul {
-    gap: 28px;
-  }
-}
-
 @media (max-width: 450px) {
 
    nav {
@@ -802,6 +809,11 @@ body.logged-in .hero {
   gap: 12px;
 }
 
+.benefits {
+    flex-direction: column;
+    align-items: center;
+  }
+
 .brand-link {
     flex: none;
   }
@@ -812,33 +824,14 @@ body.logged-in .hero {
 }
 
 .hero {
-  padding: 82px 14% 64px;
+  padding: 50px 18px;
 }
 
 .hero-card {
-    width: 320px;
-    min-height: 200px;
-    padding: 32px 9%;
-   
+   width: 100%;
+    max-width: 360px;
+    padding: 26px 22px;
   }
 }
 
-@media (max-width: 780px) {
-   
-  .brand-link {
-    flex: none;
-  }
-  .brand-logo {
-  width: 180px;
-  height: auto;
-}
-}
-@media (max-width: 860px) {
-  .brand-link {
-    flex: none;
-  }
-  .brand-logo {
-  width: 180px;
-  height: auto;
-}
-}
+

@@ -22,6 +22,17 @@ const accountGreeting = document.querySelector(".account-greeting");
 const cardBalance = document.getElementById("card-balance");
 const cardName = document.querySelector(".card-name");
 const registerSuccess = document.getElementById("register-success");
+const depositSection = document.querySelector(".deposit-section");
+const backToActions = document.querySelector(".back-to-actions");
+const depositAction = document.querySelector(".deposit-action");
+const bankActions = document.querySelector(".bank-actions");
+
+
+
+
+
+
+
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
@@ -127,6 +138,7 @@ function updatePage() {
     document.body.classList.add("logged-in");
   } else {
     document.body.classList.remove("logged-in");
+    
   }
 }
 
@@ -167,6 +179,8 @@ logoutBtn.addEventListener("click", () => {
   updateLoginModal();
   updateBankCard();
   updatePage();
+  bankActions.style.display = "none";
+  
 });
 
 
@@ -287,6 +301,19 @@ registerForm.addEventListener("submit", (event) => {
 });
 
 
+depositAction.addEventListener("click", () => {
+  bankActions.style.display = "none";
+  depositSection.style.display = "block";
+})
+
+backToActions.addEventListener("click", () => {
+  depositSection.style.display = "none";
+  bankActions.style.display = "block";
+})
+
+
+
 updateNavbar();
 updateBankCard();
 updatePage();
+
