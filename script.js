@@ -21,20 +21,20 @@ const loginContent = document.querySelector(".login-content");
 const accountContent = document.querySelector(".account-content");
 const accountGreeting = document.querySelector(".account-greeting");
 const registerSuccess = document.getElementById("register-success");
-const depositSection = document.querySelector(".deposit-section");
+const transferSection = document.querySelector(".transfer-section");
 const backToActions = document.querySelector(".back-to-actions");
-const depositAction = document.querySelector(".deposit-action");
+const transferAction = document.querySelector(".transfer-action");
 const bankActions = document.querySelector(".bank-actions");
 const loginText = document.querySelector(".login-text");
-const depositAccount = document.getElementById("deposit-account");
-const depositForm = document.querySelector(".deposit-form");
-const depositName = document.getElementById("deposit-name");
-const depositLastName = document.getElementById("deposit-last-name");
-const depositAccountNumber = document.getElementById("deposit-account-number");
-const recipientDepositError = document.getElementById("deposit-recipient-error");
-const depositAmount = document.getElementById("deposit-amount");
-const senderAmountError = document.getElementById("deposit-amount-error");
-const depositMessage = document.getElementById("deposit-success");
+const transferAccount = document.getElementById("deposit-account");
+const transferForm = document.querySelector(".transfer-form");
+const transferName = document.getElementById("deposit-name");
+const transferLastName = document.getElementById("deposit-last-name");
+const transferAccountNumber = document.getElementById("deposit-account-number");
+const recipientTransferError = document.getElementById("deposit-recipient-error");
+const transferAmount = document.getElementById("deposit-amount");
+const transferAmountError = document.getElementById("deposit-amount-error");
+const transferMessage = document.getElementById("deposit-success");
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
@@ -49,7 +49,6 @@ closeRegister.addEventListener("click", () => {
   loginModal.classList.add("open");
 });
 
-
 registerBtn.addEventListener("click", () => {
   loginModal.classList.remove("open");
   registerModal.classList.add("open");
@@ -57,7 +56,6 @@ registerBtn.addEventListener("click", () => {
 
 function updateNavbar() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
   if (currentUser) {
     loginText.textContent = `Hi, ${currentUser.name}`;
     logoutBtn.style.display = "block";
@@ -69,19 +67,15 @@ function updateNavbar() {
 
 function updateLoginModal() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
   if (currentUser) {
     loginContent.style.display = "none";
     accountContent.style.display = "block";
-
     accountGreeting.textContent = `Hi, ${currentUser.name}`;
   } else {
     loginContent.style.display = "flex";
     accountContent.style.display = "none";
   }
 }
-
-
 
 loginLink.addEventListener("click", (event) => {
   event.preventDefault();
@@ -120,35 +114,25 @@ function clearLoginForm() {
 
 function updatePage() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-  if (currentUser) {
-    document.body.classList.add("logged-in");
-  } else {
-    document.body.classList.remove("logged-in");
-  }
+  document.body.classList.toggle("logged-in", Boolean(currentUser));
 }
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const users = JSON.parse(localStorage.getItem("users")) ?? [];
-
-  const foundUser = users.find((user) => {
-    return user.email.toLowerCase() === email.value.trim().toLowerCase();
-  });
+  const foundUser = users.find((user) => user.email.toLowerCase() === email.value.trim().toLowerCase());
 
   if (!foundUser) {
     loginEmailError.textContent = "Email not found";
     loginEmailError.classList.add("show");
     return;
   }
-
   if (foundUser.password !== passwordInput.value) {
     loginPasswordError.textContent = "Incorrect Password";
     loginPasswordError.classList.add("show");
     return;
   }
 
-  console.log("Login successful!");
   localStorage.setItem("currentUser", JSON.stringify(foundUser));
   clearLoginForm();
   loginModal.classList.remove("open");
@@ -158,90 +142,51 @@ loginForm.addEventListener("submit", (event) => {
 
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("currentUser");
- 
-  depositSection.style.display = "none";
+  transferSection.style.display = "none";
   bankActions.style.display = "";
-
   updateNavbar();
   updateLoginModal();
   updatePage();
-  
 });
 
 function validateRegister(users) {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (registerName.value.trim() === "") return { field: "name", message: "Please enter your name" };
+  if (registerLastName.value.trim() === "") return { field: "last-name", message: "Please enter your last name" };
+  if (!emailPattern.test(registerEmail.value.trim())) return { field: "email", message: "Please enter a valid email" };
 
-  if (registerName.value.trim() === "") {
-    return {
-      field: "name",
-      message: "Please enter your name"
-    };
-  }
-
-  if (!emailPattern.test(registerEmail.value.trim())) {
-    return {
-      field: "email",
-      message: "Please enter a valid email"
-    };
-  }
-
-  const emailExist = users.some((user) => {
-    return user.email.toLowerCase() === registerEmail.value.trim().toLowerCase();
-  });
-
-  if (emailExist) {
-    return {
-      field: "email",
-      message: "Email already in the system"
-    };
-  }
-
-  if (registerPassword.value.length < 6) {
-    return {
-      field: "password",
-      message: "Password must be at least 6 characters"
-    };
-  }
-
-  if (registerPassword.value !== confirmPassword.value) {
-    return {
-      field: "password-confirmation",
-      message: "Passwords do not match"
-    };
-  }
-
+  const emailExist = users.some((user) => user.email.toLowerCase() === registerEmail.value.trim().toLowerCase());
+  if (emailExist) return { field: "email", message: "Email already in the system" };
+  if (registerPassword.value.length < 6) return { field: "password", message: "Password must be at least 6 characters" };
+  if (registerPassword.value !== confirmPassword.value) return { field: "password-confirmation", message: "Passwords do not match" };
   return null;
 }
 
 function cleanRegisterForm() {
   registerForm.reset();
-
-    const errors = document.querySelectorAll(".register-box .input-error");
-  errors.forEach((error)=> {
-    error.classList.remove("show");
-  });
+  document.querySelectorAll(".register-box .input-error").forEach((error) => error.classList.remove("show"));
 }
 
 function hideRegisterErrors() {
-  const errors = document.querySelectorAll(".register-box .input-error");
-  errors.forEach((error) => {
-    error.classList.remove("show");
-  });
+  document.querySelectorAll(".register-box .input-error").forEach((error) => error.classList.remove("show"));
 }
 
 function generateAccountNumber() {
-  return Math.floor(
-    1000000000 + Math.random() * 9000000000
-  );
+  return Math.floor(1000000000 + Math.random() * 9000000000);
+}
+
+function generateUniqueAccountNumber(users) {
+  let number;
+  do {
+    number = generateAccountNumber();
+  } while (users.some((user) => user.accounts?.some((account) => account.number === number)));
+  return number;
 }
 
 registerForm.addEventListener("submit", (event) => {
   event.preventDefault();
-
   const users = JSON.parse(localStorage.getItem("users")) ?? [];
-
   hideRegisterErrors();
-
   const error = validateRegister(users);
 
   if (error) {
@@ -250,36 +195,20 @@ registerForm.addEventListener("submit", (event) => {
     errorElement.classList.add("show");
     return;
   }
- 
+
   const newUser = {
-  name: registerName.value.trim(),
-  lastName: registerLastName.value.trim(),
-  email: registerEmail.value.trim(),
-  password: registerPassword.value,
-  accountNumber: generateAccountNumber(),
+    name: registerName.value.trim(),
+    lastName: registerLastName.value.trim(),
+    email: registerEmail.value.trim(),
+    password: registerPassword.value,
+    accounts: [
+      { type: "Checking", number: generateUniqueAccountNumber(users), balance: 1000 },
+      { type: "Savings", number: generateUniqueAccountNumber(users), balance: 0 }
+    ],
+    transactions: []
+  };
 
-  accounts : [
-    {
-      type: "Cheking",
-      number: generateAccountNumber(),
-      balance : 1000
-    },
-
-    {
-      type: "Savings",
-      number: generateAccountNumber(),
-      balance : 0
-    }
-
-  ],
-
-  transactions : []
-};
-  
-  
-  
   users.push(newUser);
-
   localStorage.setItem("users", JSON.stringify(users));
   registerSuccess.textContent = "Your account has been created successfully!";
   registerSuccess.classList.add("show");
@@ -287,127 +216,101 @@ registerForm.addEventListener("submit", (event) => {
   setTimeout(() => {
     registerModal.classList.remove("open");
     loginModal.classList.add("open");
-
     cleanRegisterForm();
     registerSuccess.classList.remove("show");
   }, 1500);
-
-  console.log(users);
 });
 
 function showBankActions() {
-  depositSection.style.display = "none";
+  transferSection.style.display = "none";
   bankActions.style.display = "block";
 }
 
-backToActions.addEventListener("click", () => {
-  showBankActions();
-});
+backToActions.addEventListener("click", showBankActions);
 
-
-depositAction.addEventListener("click", () => {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser")
-);
+transferAction.addEventListener("click", () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser?.accounts) return;
 
   bankActions.style.display = "none";
-  depositSection.style.display = "block";
+  transferSection.style.display = "block";
 
+  transferAccount.innerHTML = '<option value="">Choose an account</option>';
   currentUser.accounts.forEach((account) => {
-  
     const option = document.createElement("option");
-      option.value = account.number;
-      option.textContent = `${account.type} ${account.number
-      .toString()}`;
-
-     depositAccount.appendChild(option);
-    
+    option.value = account.number;
+    option.textContent = `${account.type} ${account.number}`;
+    transferAccount.appendChild(option);
   });
 });
 
-depositForm.addEventListener("submit", (event) => {
+transferForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  recipientDepositError.classList.remove("show");
-  senderAmountError.classList.remove("show");
-  depositMessage.classList.remove("show");
+  recipientTransferError.classList.remove("show");
+  transferAmountError.classList.remove("show");
+  transferMessage.classList.remove("show");
 
-  const users = JSON.parse(localStorage.getItem("users"));
+  const users = JSON.parse(localStorage.getItem("users")) ?? [];
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const amount = Number(transferAmount.value.trim());
+  const sourceAccountNumber = Number(transferAccount.value);
+  const recipientAccountNumber = Number(transferAccountNumber.value.trim());
 
+  const senderUser = users.find((user) => user.email === currentUser?.email);
+  const senderAccount = senderUser?.accounts.find((account) => account.number === sourceAccountNumber);
+
+  if (!senderAccount) {
+    transferAmountError.textContent = "Please choose an account";
+    transferAmountError.classList.add("show");
+    return;
+  }
 
   const recipientUser = users.find((user) => {
-    const checkAccount = user.accounts.some((account) => {
-  return account.number === Number(depositAccountNumber.value.trim());
-});
-  return user.name === depositName.value.trim() && user.lastName === depositLastName.value.trim() && checkAccount;
-});
- 
-if (!recipientUser) {
-     recipientDepositError.textContent = "No data found in the system";
-     recipientDepositError.classList.add("show");
-     return;
-  }
-  
-  const amount = Number(depositAmount.value.trim());
-  const senderAccount = currentUser.accounts.find((account) => {
-    return Number(depositAccount.value) === account.number
+    const hasAccount = user.accounts?.some((account) => account.number === recipientAccountNumber);
+    return user.name.toLowerCase() === transferName.value.trim().toLowerCase() &&
+      user.lastName.toLowerCase() === transferLastName.value.trim().toLowerCase() && hasAccount;
   });
 
-  const recipientAccount = recipientUser.accounts.find((account) => {
-      return account.number ===  Number(depositAccountNumber.value.trim());
-      })
+  if (!recipientUser) {
+    recipientTransferError.textContent = "No matching recipient found";
+    recipientTransferError.classList.add("show");
+    return;
+  }
 
-    if (recipientAccount.number === senderAccount.number) {
-      recipientDepositError.textContent = "You cannot transfer money to the same account";
-      recipientDepositError.classList.add("show");
-       return;
-    }
-    if (Number.isNaN(amount) || amount <= 0) {
-      senderAmountError.textContent = "The amount has to be more than 0";
-      senderAmountError.classList.add("show");
-      return;
-    }
-    if (amount > senderAccount.balance) {
-      senderAmountError.textContent = "Not enough funds";
-      senderAmountError.classList.add("show");
-      return;
-    } 
+  const recipientAccount = recipientUser.accounts.find((account) => account.number === recipientAccountNumber);
 
-      
+  if (senderUser.email === recipientUser.email && senderAccount.number === recipientAccount.number) {
+    recipientTransferError.textContent = "You cannot transfer money to the same account";
+    recipientTransferError.classList.add("show");
+    return;
+  }
+  if (Number.isNaN(amount) || amount <= 0) {
+    transferAmountError.textContent = "The amount has to be more than 0";
+    transferAmountError.classList.add("show");
+    return;
+  }
+  if (amount > senderAccount.balance) {
+    transferAmountError.textContent = "Not enough funds";
+    transferAmountError.classList.add("show");
+    return;
+  }
 
-      senderAccount.balance -= amount;
-      recipientAccount.balance += amount;
+  senderAccount.balance -= amount;
+  recipientAccount.balance += amount;
 
-      const senderUser = users.find((user) => {
-      return user.email === currentUser.email;
-});
-    if (!senderUser) {
-      return;
-    }
-      
-      const senderUserAccount = senderUser.accounts.find((account) => {
-      return senderAccount.number === account.number;
-});
-    if (!senderUserAccount) {
-     return;
-}
-      senderUserAccount.balance -= amount;
-      
-      depositMessage.textContent = "Transaction successful!";
-      depositMessage.classList.add("show");
-      setTimeout(() => {
-      depositMessage.classList.remove("show");
-      }, 3000);
-      depositForm.reset();
+  const timestamp = new Date().toISOString();
+  senderUser.transactions ??= [];
+  recipientUser.transactions ??= [];
+  senderUser.transactions.push({ type: "transfer-out", accountNumber: senderAccount.number, otherAccountNumber: recipientAccount.number, amount, date: timestamp });
+  recipientUser.transactions.push({ type: "transfer-in", accountNumber: recipientAccount.number, otherAccountNumber: senderAccount.number, amount, date: timestamp });
 
-      localStorage.setItem("users", JSON.stringify(users));
-      localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    
-});
+  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem("currentUser", JSON.stringify(senderUser));
 
-
-backToActions.addEventListener("click", () => {
-  depositSection.style.display = "none";
-  bankActions.style.display = "block";
+  transferMessage.textContent = "Transaction successful!";
+  transferMessage.classList.add("show");
+  transferForm.reset();
+  setTimeout(() => transferMessage.classList.remove("show"), 3000);
 });
 
 updateNavbar();
