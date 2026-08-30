@@ -44,71 +44,34 @@
       </div>
 
       <section class="bank-actions">
-      <h2>What would you like to do?</h2>
+        <h2>What would you like to do?</h2>
+        <div class="action-cards">
+          <button class="action-card transfer-action"><span>⇄</span><h3>Transfer money</h3><p>Send money to another Jasper Bank account.</p></button>
+          <button class="action-card deposit-action"><span>＋</span><h3>Deposit</h3><p>Add money to your account.</p></button>
+          <button class="action-card withdraw-action"><span>−</span><h3>Withdraw</h3><p>Withdraw money from your balance.</p></button>
+          <button class="action-card pay-card-action"><span>▣</span><h3>Pay card</h3><p>Make a payment toward your credit card.</p></button>
+        </div>
+      </section>
 
-      <div class="action-cards">
-        <button class="action-card transfer-action">
-        <span>⇄</span>
-        <h3>Transfer money</h3>
+      <section class="deposit-section transfer-section">
+        <button type="button" class="back-to-actions">← Back</button>
+        <h2>Transfer money</h2>
         <p>Send money to another Jasper Bank account.</p>
-        </button>
-
-        <button class="action-card deposit-action">
-        <span>＋</span>
-        <h3>Deposit</h3>
-        <p>Add money to your account.</p>
-        </button>
-
-        <button class="action-card withdraw-action">
-        <span>−</span>
-        <h3>Withdraw</h3>
-        <p>Withdraw money from your balance.</p>
-        </button>
-
-        <button class="action-card pay-card-action">
-        <span>▣</span>
-        <h3>Pay card</h3>
-        <p>Make a payment toward your credit card.</p>
-        </button>
-      </div>
+        <form class="deposit-form transfer-form">
+          <label for="deposit-account">Transfer from</label>
+          <select id="deposit-account"><option value="">Choose an account</option></select>
+          <label for="deposit-name">Recipient name</label><input type="text" id="deposit-name">
+          <label for="deposit-last-name">Recipient last name</label><input type="text" id="deposit-last-name">
+          <label for="deposit-account-number">Recipient account number</label><input type="number" id="deposit-account-number">
+          <p class="input-error" id="deposit-recipient-error"></p>
+          <label for="deposit-amount">Amount</label>
+          <input type="number" id="deposit-amount" min="0.01" step="0.01" placeholder="0.00">
+          <p class="input-error" id="deposit-amount-error"></p>
+          <button type="submit" class="deposit-submit">Transfer money</button>
+          <p class="deposit-success" id="deposit-success"></p>
+        </form>
+      </section>
     </section>
-    <section class="deposit-section">
-  <button type="button" class="back-to-actions">← Back</button>
-
-  <h2>Deposit money</h2>
-  <p>Add money to your Jasper Bank account.</p>
-
-  <form class="deposit-form">
-    <select id="deposit-account">
-    <option value="">Choose an account</option>
-    </select> 
-    <label for="deposit-account">Deposit to</label>
-    <label for="deposit-name">Name</label><input type="text" id="deposit-name">
-    <label for="deposit-last-name">Last Name</label><input type="text" id="deposit-last-name">
-    <label for="deposit-account-number">Account Number</label><input type="number" id="deposit-account-number">
-    <p class="input-error" id="deposit-recipient-error"></p>
-    <label for="deposit-amount">Amount</label>
-
-    <input
-      type="number"
-      id="deposit-amount"
-      min="0.01"
-      step="0.01"
-      placeholder="0.00"
-    >
-
-    <p class="input-error" id="deposit-error"></p>
-    <p class="input-error" id="deposit-amount-error"></p>
-
-    <button type="submit" class="deposit-submit">
-      Deposit money
-    </button>
-    <p class="deposit-success" id="deposit-success"></p>
-  </form>
-</section>
-    </section>
-    
-    
 
     <section class="accounts">
       <h2>Banking for you</h2><p>Simple financial solutions for every stage of life.</p>
