@@ -524,14 +524,14 @@ body.logged-in .hero {
   z-index: 50;
 }
 
-.register-success {
+.register-success, .deposit-success {
   display: none;
   color: green;
   font-weight: 600;
   text-align: center;
 }
 
-.register-success.show {
+.register-success.show, .deposit-success.show {
   display: block;
 }
 
@@ -736,7 +736,6 @@ body.logged-in .hero {
 
   box-shadow: 0 10px 22px rgba(7, 132, 200, 0.25);
 }
-
 
 
 

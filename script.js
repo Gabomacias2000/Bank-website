@@ -7,6 +7,7 @@ const registerBtn = document.querySelector(".open-register");
 const registerModal = document.querySelector(".register-modal");
 const closeRegister = document.querySelector(".close-register");
 const registerName = document.querySelector("#register-name");
+const registerLastName = document.querySelector("#register-last-name");
 const registerEmail = document.querySelector("#register-email");
 const registerPassword = document.querySelector("#register-password");
 const confirmPassword = document.querySelector("#confirm-password");
@@ -19,8 +20,6 @@ const logoutBtn = document.querySelector(".logout-btn");
 const loginContent = document.querySelector(".login-content");
 const accountContent = document.querySelector(".account-content");
 const accountGreeting = document.querySelector(".account-greeting");
-const cardBalance = document.getElementById("card-balance");
-const cardName = document.querySelector(".card-name");
 const registerSuccess = document.getElementById("register-success");
 const depositSection = document.querySelector(".deposit-section");
 const backToActions = document.querySelector(".back-to-actions");
@@ -28,6 +27,14 @@ const depositAction = document.querySelector(".deposit-action");
 const bankActions = document.querySelector(".bank-actions");
 const loginText = document.querySelector(".login-text");
 const depositAccount = document.getElementById("deposit-account");
+const depositForm = document.querySelector(".deposit-form");
+const depositName = document.getElementById("deposit-name");
+const depositLastName = document.getElementById("deposit-last-name");
+const depositAccountNumber = document.getElementById("deposit-account-number");
+const recipientDepositError = document.getElementById("deposit-recipient-error");
+const depositAmount = document.getElementById("deposit-amount");
+const senderAmountError = document.getElementById("deposit-amount-error");
+const depositMessage = document.getElementById("deposit-success");
 
 registerModal.addEventListener("click", (event) => {
   if (event.target === registerModal) {
@@ -74,17 +81,7 @@ function updateLoginModal() {
   }
 }
 
-function updateBankCard() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  if (currentUser) {
-    cardBalance.textContent = `$${currentUser.balance.toFixed(2)}`;
-    cardName.textContent = currentUser.name;
-  } else {
-    cardBalance.textContent = "$0.00";
-    cardName.textContent = "Jasper Client";
-  }
-}
 
 loginLink.addEventListener("click", (event) => {
   event.preventDefault();
@@ -156,7 +153,6 @@ loginForm.addEventListener("submit", (event) => {
   clearLoginForm();
   loginModal.classList.remove("open");
   updateNavbar();
-  updateBankCard();
   updatePage();
 });
 
@@ -168,7 +164,6 @@ logoutBtn.addEventListener("click", () => {
 
   updateNavbar();
   updateLoginModal();
-  updateBankCard();
   updatePage();
   
 });
@@ -258,6 +253,7 @@ registerForm.addEventListener("submit", (event) => {
  
   const newUser = {
   name: registerName.value.trim(),
+  lastName: registerLastName.value.trim(),
   email: registerEmail.value.trim(),
   password: registerPassword.value,
   accountNumber: generateAccountNumber(),
@@ -319,8 +315,8 @@ depositAction.addEventListener("click", () => {
   currentUser.accounts.forEach((account) => {
   
     const option = document.createElement("option");
-      option.value = account.accountNumber;
-      option.textContent = `${account.type} •••• ${account.accountNumber
+      option.value = account.number;
+      option.textContent = `${account.type} ${account.number
       .toString()}`;
 
      depositAccount.appendChild(option);
@@ -328,11 +324,91 @@ depositAction.addEventListener("click", () => {
   });
 });
 
+depositForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  recipientDepositError.classList.remove("show");
+  senderAmountError.classList.remove("show");
+  depositMessage.classList.remove("show");
+
+  const users = JSON.parse(localStorage.getItem("users"));
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+
+  const recipientUser = users.find((user) => {
+    const checkAccount = user.accounts.some((account) => {
+  return account.number === Number(depositAccountNumber.value.trim());
+});
+  return user.name === depositName.value.trim() && user.lastName === depositLastName.value.trim() && checkAccount;
+});
+ 
+if (!recipientUser) {
+     recipientDepositError.textContent = "No data found in the system";
+     recipientDepositError.classList.add("show");
+     return;
+  }
+  
+  const amount = Number(depositAmount.value.trim());
+  const senderAccount = currentUser.accounts.find((account) => {
+    return Number(depositAccount.value) === account.number
+  });
+
+  const recipientAccount = recipientUser.accounts.find((account) => {
+      return account.number ===  Number(depositAccountNumber.value.trim());
+      })
+
+    if (recipientAccount.number === senderAccount.number) {
+      recipientDepositError.textContent = "You cannot transfer money to the same account";
+      recipientDepositError.classList.add("show");
+       return;
+    }
+    if (Number.isNaN(amount) || amount <= 0) {
+      senderAmountError.textContent = "The amount has to be more than 0";
+      senderAmountError.classList.add("show");
+      return;
+    }
+    if (amount > senderAccount.balance) {
+      senderAmountError.textContent = "Not enough funds";
+      senderAmountError.classList.add("show");
+      return;
+    } 
+
+      
+
+      senderAccount.balance -= amount;
+      recipientAccount.balance += amount;
+
+      const senderUser = users.find((user) => {
+      return user.email === currentUser.email;
+});
+    if (!senderUser) {
+      return;
+    }
+      
+      const senderUserAccount = senderUser.accounts.find((account) => {
+      return senderAccount.number === account.number;
+});
+    if (!senderUserAccount) {
+     return;
+}
+      senderUserAccount.balance -= amount;
+      
+      depositMessage.textContent = "Transaction successful!";
+      depositMessage.classList.add("show");
+      setTimeout(() => {
+      depositMessage.classList.remove("show");
+      }, 3000);
+      depositForm.reset();
+
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    
+});
+
+
 backToActions.addEventListener("click", () => {
   depositSection.style.display = "none";
   bankActions.style.display = "block";
 });
 
 updateNavbar();
-updateBankCard();
 updatePage();
