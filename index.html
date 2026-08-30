@@ -5,39 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jasper Bank</title>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./transfer-styles.css">
   <link rel="stylesheet" href="./logo-styles.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="#" class="brand-link" aria-label="Jasper Bank home"><img src="./jasper-bank-logo.svg" alt="Jasper Bank" class="brand-logo"></a>
-      <ul>
-        <li><a href="#" class="active-nav">Home</a></li><li><a href="#">Accounts</a></li><li><a href="#">Services</a></li><li><a href="#">About</a></li>
-      </ul>
-      <a href="#" class="login-link"><span class="user-symbol">♙</span><span class="login-text">Login</span></a>
-    </nav>
-  </header>
+  <header><nav><a href="#" class="brand-link" aria-label="Jasper Bank home"><img src="./jasper-bank-logo.svg" alt="Jasper Bank" class="brand-logo"></a><ul><li><a href="#" class="active-nav">Home</a></li><li><a href="#">Accounts</a></li><li><a href="#">Services</a></li><li><a href="#">About</a></li></ul><a href="#" class="login-link"><span class="user-symbol">♙</span><span class="login-text">Login</span></a></nav></header>
   <main>
     <section class="hero">
       <div class="mountain-art" aria-hidden="true"><span class="peak peak-one"></span><span class="peak peak-two"></span><span class="pine pine-one">▲</span><span class="pine pine-two">▲</span><span class="pine pine-three">▲</span></div>
       <div class="hero-content"><h1>Banking made simple.<br>Inspired by Jasper.</h1><p>Manage your money with confidence wherever life takes you.</p><div class="hero-actions"><a href="#"><span class="button-icon">▦</span>Open an account <span>›</span></a><a href="#">Learn more <span>›</span></a></div><div class="benefits"><div class="benefit"><span class="benefit-icon">◇</span><strong>Your money,<br>our priority</strong></div><div class="benefit"><span class="benefit-icon">♧</span><strong>Built for<br>our community</strong></div><div class="benefit"><span class="benefit-icon">▯</span><strong>Bank anytime,<br>anywhere</strong></div></div></div>
       <div class="hero-card"><div class="card-top"><span class="card-brand">JASPER <small>BANK</small></span><span>•••</span></div><div class="card-chip"><span></span><span></span><span></span><span></span></div><p>Available balance</p><h2 id="card-balance">$0.00</h2><div class="card-mountains" aria-hidden="true"></div><div class="card-bottom"><span class="card-name">Jasper Client</span><span>•••• 4821</span></div></div>
       <section class="bank-actions"><h2>What would you like to do?</h2><div class="action-cards"><button class="action-card transfer-action"><span>⇄</span><h3>Transfer money</h3><p>Send money to another Jasper Bank account.</p></button><button class="action-card deposit-action"><span>＋</span><h3>Deposit</h3><p>Add money to your account.</p></button><button class="action-card withdraw-action"><span>−</span><h3>Withdraw</h3><p>Withdraw money from your balance.</p></button><button class="action-card pay-card-action"><span>▣</span><h3>Pay card</h3><p>Make a payment toward your credit card.</p></button></div></section>
-      <section class="transfer-section">
-        <button type="button" class="back-to-actions">← Back</button>
-        <h2>Transfer money</h2><p>Send money to another Jasper Bank account.</p>
-        <form class="transfer-form">
-          <label for="transfer-account">Transfer from</label><select id="transfer-account"><option value="">Choose an account</option></select>
-          <label for="transfer-name">Recipient name</label><input type="text" id="transfer-name">
-          <label for="transfer-last-name">Recipient last name</label><input type="text" id="transfer-last-name">
-          <label for="transfer-account-number">Recipient account number</label><input type="number" id="transfer-account-number">
-          <p class="input-error" id="transfer-recipient-error"></p>
-          <label for="transfer-amount">Amount</label><input type="number" id="transfer-amount" min="0.01" step="0.01" placeholder="0.00">
-          <p class="input-error" id="transfer-amount-error"></p>
-          <button type="submit" class="transfer-submit">Transfer money</button>
-          <p class="transfer-success" id="transfer-success"></p>
-        </form>
-      </section>
+      <section class="transfer-section"><button type="button" class="back-to-actions">← Back</button><h2>Transfer money</h2><p>Send money to another Jasper Bank account.</p><form class="transfer-form"><label for="transfer-account">Transfer from</label><select id="transfer-account"><option value="">Choose an account</option></select><label for="transfer-name">Recipient name</label><input type="text" id="transfer-name"><label for="transfer-last-name">Recipient last name</label><input type="text" id="transfer-last-name"><label for="transfer-account-number">Recipient account number</label><input type="number" id="transfer-account-number"><p class="input-error" id="transfer-recipient-error"></p><label for="transfer-amount">Amount</label><input type="number" id="transfer-amount" min="0.01" step="0.01" placeholder="0.00"><p class="input-error" id="transfer-amount-error"></p><button type="submit" class="transfer-submit">Transfer money</button><p class="transfer-success" id="transfer-success"></p></form></section>
     </section>
     <section class="accounts"><h2>Banking for you</h2><p>Simple financial solutions for every stage of life.</p><div class="account-cards"><article class="account-card"><h3>Checking Account</h3><p>Everyday banking made simple and convenient.</p><a href="#">Learn more</a></article><article class="account-card"><h3>Savings Account</h3><p>Grow your savings and reach your financial goals.</p><a href="#">Learn more</a></article><article class="account-card"><h3>Credit Card</h3><p>Flexible spending with rewards that work for you.</p><a href="#">Learn more</a></article></div></section>
   </main>
