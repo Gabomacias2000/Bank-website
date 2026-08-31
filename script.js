@@ -35,30 +35,16 @@ const recipientTransferError = document.getElementById("transfer-recipient-error
 const transferAmount = document.getElementById("transfer-amount");
 const transferAmountError = document.getElementById("transfer-amount-error");
 const transferMessage = document.getElementById("transfer-success");
+const depositAction = document.querySelector(".deposit-action");
+const depositSection = document.querySelector(".deposit-section");
+const depositAccount = document.querySelector("#deposit-account");
+const depositForm = document.querySelector(".deposit-form");
+const depositAmount = document.getElementById("deposit-amount");
+const depositAmountError = document.getElementById("deposit-amount-error");
+const depositMessage = document.getElementById("deposit-success");
 
-registerModal.addEventListener("click", (event) => { if (event.target === registerModal) { registerModal.classList.remove("open"); hideRegisterErrors(); } });
-closeRegister.addEventListener("click", () => { registerModal.classList.remove("open"); cleanRegisterForm(); loginModal.classList.add("open"); });
-registerBtn.addEventListener("click", () => { loginModal.classList.remove("open"); registerModal.classList.add("open"); });
-
-function updateNavbar() { const currentUser = JSON.parse(localStorage.getItem("currentUser")); if (currentUser) { loginText.textContent = `Hi, ${currentUser.name}`; logoutBtn.style.display = "block"; } else { loginText.textContent = "Login"; logoutBtn.style.display = "none"; } }
-function updateLoginModal() { const currentUser = JSON.parse(localStorage.getItem("currentUser")); if (currentUser) { loginContent.style.display = "none"; accountContent.style.display = "block"; accountGreeting.textContent = `Hi, ${currentUser.name}`; } else { loginContent.style.display = "flex"; accountContent.style.display = "none"; } }
-loginLink.addEventListener("click", (event) => { event.preventDefault(); updateLoginModal(); loginModal.classList.add("open"); });
-loginModal.addEventListener("click", (event) => { if (event.target === loginModal) { loginModal.classList.remove("open"); clearLoginForm(); } });
-closeModal.addEventListener("click", () => { loginModal.classList.remove("open"); clearLoginForm(); });
-togglePassword.addEventListener("click", () => { if (passwordInput.type === "password") { passwordInput.type = "text"; togglePassword.textContent = "Hide"; } else { passwordInput.type = "password"; togglePassword.textContent = "Show"; } });
 function clearLoginForm() { email.value = ""; passwordInput.value = ""; loginEmailError.classList.remove("show"); loginPasswordError.classList.remove("show"); }
 function updatePage() { const currentUser = JSON.parse(localStorage.getItem("currentUser")); document.body.classList.toggle("logged-in", Boolean(currentUser)); }
-
-loginForm.addEventListener("submit", (event) => {
-  event.preventDefault(); const users = JSON.parse(localStorage.getItem("users")) ?? [];
-  const foundUser = users.find((user) => user.email.toLowerCase() === email.value.trim().toLowerCase());
-  if (!foundUser) { loginEmailError.textContent = "Email not found"; loginEmailError.classList.add("show"); return; }
-  if (foundUser.password !== passwordInput.value) { loginPasswordError.textContent = "Incorrect Password"; loginPasswordError.classList.add("show"); return; }
-  localStorage.setItem("currentUser", JSON.stringify(foundUser)); clearLoginForm(); loginModal.classList.remove("open"); updateNavbar(); updatePage();
-});
-
-logoutBtn.addEventListener("click", () => { localStorage.removeItem("currentUser"); transferSection.style.display = "none"; bankActions.style.display = ""; updateNavbar(); updateLoginModal(); updatePage(); });
-
 function validateRegister(users) {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (registerName.value.trim() === "") return { field: "name", message: "Please enter your name" };
@@ -74,7 +60,25 @@ function cleanRegisterForm() { registerForm.reset(); document.querySelectorAll("
 function hideRegisterErrors() { document.querySelectorAll(".register-box .input-error").forEach((error) => error.classList.remove("show")); }
 function generateAccountNumber() { return Math.floor(1000000000 + Math.random() * 9000000000); }
 function generateUniqueAccountNumber(users) { let number; do { number = generateAccountNumber(); } while (users.some((user) => user.accounts?.some((account) => account.number === number))); return number; }
+function showBankActions() { transferSection.style.display = "none"; bankActions.style.display = "block"; }
+function updateDepositAccounts() { depositAccount.innerHTML = '<option value="">Choose an account</option>'; currentUser.accounts.forEach((account) => { const option = document.createElement("option"); option.value = account.number; option.textContent = `${account.type} ${account.number} - $${account.balance.toFixed(2)} `; depositAccount.append(option)}); const currentUser = JSON.parse(localStorage.getItem("currentUser")); depositAccount.innerHTML = '<option value="">Choose an account</option>'; }
 
+backToActions.addEventListener("click", showBankActions);
+registerModal.addEventListener("click", (event) => { if (event.target === registerModal) { registerModal.classList.remove("open"); hideRegisterErrors(); } });
+closeRegister.addEventListener("click", () => { registerModal.classList.remove("open"); cleanRegisterForm(); loginModal.classList.add("open"); });
+registerBtn.addEventListener("click", () => { loginModal.classList.remove("open"); registerModal.classList.add("open"); });
+loginLink.addEventListener("click", (event) => { event.preventDefault(); updateLoginModal(); loginModal.classList.add("open"); });
+loginModal.addEventListener("click", (event) => { if (event.target === loginModal) { loginModal.classList.remove("open"); clearLoginForm(); } });
+closeModal.addEventListener("click", () => { loginModal.classList.remove("open"); clearLoginForm(); });
+togglePassword.addEventListener("click", () => { if (passwordInput.type === "password") { passwordInput.type = "text"; togglePassword.textContent = "Hide"; } else { passwordInput.type = "password"; togglePassword.textContent = "Show"; } });
+loginForm.addEventListener("submit", (event) => {
+  event.preventDefault(); const users = JSON.parse(localStorage.getItem("users")) ?? [];
+  const foundUser = users.find((user) => user.email.toLowerCase() === email.value.trim().toLowerCase());
+  if (!foundUser) { loginEmailError.textContent = "Email not found"; loginEmailError.classList.add("show"); return; }
+  if (foundUser.password !== passwordInput.value) { loginPasswordError.textContent = "Incorrect Password"; loginPasswordError.classList.add("show"); return; }
+  localStorage.setItem("currentUser", JSON.stringify(foundUser)); clearLoginForm(); loginModal.classList.remove("open"); updateNavbar(); updatePage();
+});
+logoutBtn.addEventListener("click", () => { localStorage.removeItem("currentUser"); transferSection.style.display = "none"; bankActions.style.display = ""; updateNavbar(); updateLoginModal(); updatePage(); });
 registerForm.addEventListener("submit", (event) => {
   event.preventDefault(); const users = JSON.parse(localStorage.getItem("users")) ?? []; hideRegisterErrors(); const error = validateRegister(users);
   if (error) { const errorElement = document.getElementById(`${error.field}-error`); errorElement.textContent = error.message; errorElement.classList.add("show"); return; }
@@ -82,17 +86,12 @@ registerForm.addEventListener("submit", (event) => {
   users.push(newUser); localStorage.setItem("users", JSON.stringify(users)); registerSuccess.textContent = "Your account has been created successfully!"; registerSuccess.classList.add("show");
   setTimeout(() => { registerModal.classList.remove("open"); loginModal.classList.add("open"); cleanRegisterForm(); registerSuccess.classList.remove("show"); }, 1500);
 });
-
-function showBankActions() { transferSection.style.display = "none"; bankActions.style.display = "block"; }
-backToActions.addEventListener("click", showBankActions);
-
 transferAction.addEventListener("click", () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser")); if (!currentUser?.accounts) return;
   bankActions.style.display = "none"; transferSection.style.display = "block";
   transferAccount.innerHTML = '<option value="">Choose an account</option>';
   currentUser.accounts.forEach((account) => { const option = document.createElement("option"); option.value = account.number; option.textContent = `${account.type} ${account.number} — $${account.balance.toFixed(2)}`; transferAccount.appendChild(option); });
 });
-
 transferForm.addEventListener("submit", (event) => {
   event.preventDefault(); recipientTransferError.classList.remove("show"); transferAmountError.classList.remove("show"); transferMessage.classList.remove("show");
   const users = JSON.parse(localStorage.getItem("users")) ?? []; const currentUser = JSON.parse(localStorage.getItem("currentUser")); const amount = Number(transferAmount.value.trim()); const sourceAccountNumber = Number(transferAccount.value); const recipientAccountNumber = Number(transferAccountNumber.value.trim());
@@ -114,3 +113,24 @@ transferForm.addEventListener("submit", (event) => {
 
 updateNavbar();
 updatePage();
+
+depositAction.addEventListener("click", () => {
+  depositAmountError.classList.remove("show");
+  depositMessage.classList.remove("show"); 
+  bankActions.style.display = "none"; depositSection.style.display = "block";
+  updateDepositAccounts();
+});
+  depositForm.addEventListener("submit", (event) => {
+  event.preventDefault(); const amount = Number(depositAmount.value.trim()); const selectedAccountNumber = Number(depositAccount.value);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const selectedAccount = currentUser.accounts.find((account) => { return selectedAccountNumber === account.number;});
+  if (!selectedAccount) { depositAmountError.textContent = "Please choose an account"; depositAmountError.classList.add("show"); return; }
+  if (Number.isNaN(amount) || amount < 1) { depositAmountError.textContent = "The amount should be a minimum of $1 dollar."; depositAmountError.classList.add("show"); return;}
+  selectedAccount.balance += amount;
+  localStorage.setItem("currentUser", JSON.stringify(currentUser)); const users = JSON.parse(localStorage.getItem("users")); 
+  const userInUsers = users.find((user) => { return user.email === currentUser.email;});
+  const accountInUsers = userInUsers.accounts.find((account) => {return selectedAccountNumber === account.number;}); accountInUsers.balance += amount;
+  localStorage.setItem("users", JSON.stringify(users));
+  depositMessage.textContent = "Deposit successful!"; depositMessage.classList.add("show");  depositForm.reset(); setTimeout(() => {depositMessage.classList.remove("show"); }, 3000);
+  updateDepositAccounts();
+});
