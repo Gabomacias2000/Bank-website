@@ -737,7 +737,9 @@ body.logged-in .hero {
   box-shadow: 0 10px 22px rgba(7, 132, 200, 0.25);
 }
 
-
+.move-money-section {
+  display: none;
+}
 
 
 

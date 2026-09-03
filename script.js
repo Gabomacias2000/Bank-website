@@ -43,8 +43,15 @@ const depositForm = document.querySelector(".deposit-form");
 const depositAmount = document.getElementById("deposit-amount");
 const depositAmountError = document.getElementById("deposit-amount-error");
 const depositMessage = document.getElementById("deposit-success");
-
 const backToActionsButtons = document.querySelectorAll(".back-to-actions");
+const moveMoneyAction = document.querySelector(".move-money-action");
+const moveMoneySection = document.querySelector(".move-money-section");
+const moveMoneyForm = document.querySelector(".move-money-form");
+const moveFromAccount = document.getElementById("move-from-account");
+const moveToAccount = document.getElementById("move-to-account");
+const moveAmount = document.getElementById("move-amount");
+const moveMoneyError = document.getElementById("move-money-error");
+
 
 function clearLoginForm() {
   email.value = "";
@@ -146,7 +153,7 @@ function generateUniqueAccountNumber(users, reservedNumbers = []) {
 function showBankActions() {
   transferSection.style.display = "none";
   depositSection.style.display = "none";
-  bankActions.style.display = "block";
+  bankActions.style.display = "";
 }
 
 function updateDepositAccounts() {
@@ -492,6 +499,11 @@ depositForm.addEventListener("submit", (event) => {
     depositMessage.classList.remove("show");
   }, 3000);
 });
+
+moveMoneyAction.addEventListener("click", () => {
+  bankActions.style.display = "none";
+  moveMoneySection.style.display = "block";
+})
 
 updateNavbar();
 updateLoginModal();
